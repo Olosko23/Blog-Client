@@ -1,5 +1,11 @@
+import Layout from "./layout/Layout";
+
 function App() {
-  return <h1 className="text-3xl font-bold underline">MERN STACK BLOG</h1>;
+  return (
+    <>
+      <Layout />
+    </>
+  );
 }
 
 export default App;
