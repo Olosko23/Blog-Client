@@ -1,9 +1,7 @@
-import React from "react";
-
 const Newsletter = () => {
   return (
     <div className="bg-gray-100 py-12">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-4">
         {/* Left Section with Texts */}
         <div className="lg:w-1/2 lg:pr-8 mb-8 lg:mb-0">
           <h2 className="text-3xl font-semibold mb-4 text-center lg:text-left">
