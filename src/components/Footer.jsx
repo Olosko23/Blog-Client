@@ -23,7 +23,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center text-center mt-4 px-4">
         {/* Copyright Disclaimer */}
         <p className="text-sm">
           &copy; {currentYear} Phreddy. All rights reserved. |{" "}

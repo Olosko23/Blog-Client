@@ -1,9 +1,9 @@
-import Blog1 from "../../assets/blog2.jpg";
+import Pic1 from "../../assets/pic.jpg";
 
 const Section2 = () => {
   return (
     <div className="bg-gray-100 py-12">
-      <div className="container mx-auto px-4 max-w-7xl py-12">
+      <div className="container mx-auto px-4 max-w-7xl py-12 text-center sm:text-start">
         {/* Added Header */}
         <h1 className="text-4xl font-bold mb-8 text-gray-800">
           Explore Our Features
@@ -13,7 +13,7 @@ const Section2 = () => {
           {/* Image Section */}
           <section className="hidden lg:flex lg:w-1/2 pr-8">
             <img
-              src={Blog1}
+              src={Pic1}
               alt="Section2_Image"
               className="w-full h-auto rounded-lg shadow-md"
             />

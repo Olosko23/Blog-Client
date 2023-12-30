@@ -31,24 +31,26 @@ const Navbar = () => {
     <div className="max-w-7xl mx-auto">
       {/* Large Screen */}
       <div
-        className={`md:flex flex justify-between items-center fixed top-0 left-0 w-full z-10 text-gray-700 px-3 sm:px-6 md:px-8 lg:px-10 py-4 transition-all duration-300 ${
+        className={`md:flex flex justify-between items-center fixed top-0 left-0 w-full z-10 text-gray-700 px-5 sm:px-6 md:px-8 lg:px-10 py-4 transition-all duration-300 ${
           isScrolled ? "bg-white shadow-md" : "bg-blue-500"
         }`}
       >
-        <div className="cursor-pointer font-bold text-xl">Phreddy</div>
+        <div className="cursor-pointer font-bold text-2xl hover:scale-105">
+          Phreddy
+        </div>
         <div className="md:flex justify-between space-x-4 hidden">
-          <div className="cursor-pointer hover:text-gray-300 font-semibold">
-            About Us
-          </div>
-          <div className="cursor-pointer hover:text-gray-300 font-semibold">
+          <div className="cursor-pointer hover:text-blue-300 font-semibold text-xl">
             Blog
           </div>
-          <div className="cursor-pointer hover:text-gray-300 font-semibold">
+          <div className="cursor-pointer hover:text-blue-300 font-semibold text-xl">
+            About Us
+          </div>
+          <div className="cursor-pointer hover:text-blue-300 font-semibold text-xl">
             Contact
           </div>
         </div>
         <div className="hidden md:flex">
-          <button className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-md py-2 px-4">
+          <button className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-xl rounded-md py-2 px-4">
             Login
           </button>
         </div>
