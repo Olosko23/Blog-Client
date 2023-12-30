@@ -1,103 +1,86 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { CiMenuFries } from "react-icons/ci";
+import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen(!isMenuOpen);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <nav className="bg-gray-800 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="text-white text-xl font-bold cursor-pointer hover:text-gray-300">
-          Phreddy
-        </div>
-
-        {/* Hidden on small screens */}
-        <div className="hidden md:flex space-x-4">
-          <a href="#" className="text-white hover:text-gray-300">
-            About
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
+    <div className="max-w-7xl mx-auto">
+      {/* Large Screen */}
+      <div
+        className={`md:flex flex justify-between items-center fixed top-0 left-0 w-full z-10 text-gray-700 px-3 sm:px-6 md:px-8 lg:px-10 py-4 transition-all duration-300 ${
+          isScrolled ? "bg-white shadow-md" : "bg-blue-500"
+        }`}
+      >
+        <div className="cursor-pointer font-bold text-xl">Phreddy</div>
+        <div className="md:flex justify-between space-x-4 hidden">
+          <div className="cursor-pointer hover:text-gray-300 font-semibold">
+            About Us
+          </div>
+          <div className="cursor-pointer hover:text-gray-300 font-semibold">
+            Blog
+          </div>
+          <div className="cursor-pointer hover:text-gray-300 font-semibold">
             Contact
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
-            Login
-          </a>
+          </div>
         </div>
-
-        {/* Hamburger menu for small screens */}
-        <div className="md:hidden">
-          <button
-            type="button"
-            className="text-white hover:text-gray-300 focus:outline-none"
-            onClick={toggleMenu}
-          >
-            {isMenuOpen ? (
-              // Multiply sign when menu is open
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="h-6 w-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              </svg>
-            ) : (
-              // Hamburger icon when menu is closed
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="h-6 w-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              </svg>
-            )}
+        <div className="hidden md:flex">
+          <button className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-md py-2 px-4">
+            Login
           </button>
-
-          {/* Dropdown menu */}
-          {isMenuOpen && (
-            <div className="absolute top-16 right-0 bg-gray-800 p-4 space-y-2">
-              <a
-                href="#"
-                onClick={toggleMenu}
-                className="text-white hover:text-gray-300 block"
-              >
-                About
-              </a>
-              <a
-                href="#"
-                onClick={toggleMenu}
-                className="text-white hover:text-gray-300 block"
-              >
-                Contact
-              </a>
-              <a
-                href="#"
-                onClick={toggleMenu}
-                className="text-white hover:text-gray-300 block"
-              >
-                Login
-              </a>
-            </div>
+        </div>
+        <div onClick={toggleMobileMenu} className="flex md:hidden">
+          {isMobileMenuOpen ? (
+            <IoMdClose size={20} style={{ strokeWidth: 2 }} className="" />
+          ) : (
+            <CiMenuFries size={20} style={{ strokeWidth: 2 }} className="" />
           )}
         </div>
       </div>
-    </nav>
+
+      {/* Mobile Screen */}
+      {isMobileMenuOpen && (
+        <div className="px-6 py-4 transition-all duration-300">
+          <div
+            className="fixed top-0 left-0 w-full h-[40vh] bg-blue-500 text-white px-6 py-4"
+            onClick={closeMobileMenu}
+          >
+            <div className="text-xl font-bold mb-4">Mobile Menu</div>
+            <div className="cursor-pointer hover:text-gray-300 mb-2">
+              About Us
+            </div>
+            <div className="cursor-pointer hover:text-gray-300 mb-2">Blog</div>
+            <div className="cursor-pointer hover:text-gray-300 mb-2">
+              Contact
+            </div>
+            <div className="cursor-pointer hover:text-gray-300 mb-2">Login</div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
