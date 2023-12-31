@@ -6,4 +6,23 @@
   box-sizing: border-box;
 }
 
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #f6f6ff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #1863f8; /* Blue-600 */
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #0240e9; /* Darker shade for hover effect */
+}

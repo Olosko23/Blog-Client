@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Newsletter = () => {
   return (
     <div className="bg-gray-100 py-12">
@@ -29,9 +31,12 @@ const Newsletter = () => {
             </button>
             <p className="text-sm text-gray-600 mt-2">
               By Subscribing you agree to our{" "}
-              <a href="#" className="text-blue-500 hover:underline">
+              <Link
+                to="/terms_of_service"
+                className="text-blue-500 hover:underline"
+              >
                 terms and conditions
-              </a>
+              </Link>
             </p>
           </form>
         </div>
