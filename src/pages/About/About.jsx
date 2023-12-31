@@ -1,19 +1,19 @@
 import React from "react";
-//import Con2 from "../../assets/con2.webp";
+import Con2 from "../../assets/con2.jpg";
 
 const About = () => {
   return (
     <div className="flex min-h-screen items-center justify-center mt-24">
       <div className="w-full max-w-4xl p-8">
-        <h2 className="text-3xl font-bold mb-6">About Phreddy</h2>
+        {/* <h2 className="text-3xl font-bold mb-6">About Phreddy</h2>*/}
 
         {/* Image */}
         <div className="mb-8">
-          {/*<img
+          <img
             src={Con2}
             alt="About Us"
             className="w-[50%] h-auto max-h-[40vh] rounded-md"
-  />*/}
+          />
         </div>
 
         <p className="text-gray-700 leading-relaxed">
