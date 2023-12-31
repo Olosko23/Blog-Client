@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { CiMenuFries } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,23 +39,23 @@ const Navbar = () => {
         }`}
       >
         <div className="cursor-pointer font-bold text-2xl hover:scale-105">
-          Phreddy
+          <Link to="/">Phreddy</Link>
         </div>
         <div className="md:flex justify-between space-x-4 hidden">
           <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
-            Blog
+            <Link to="/blogs">Blog</Link>
           </div>
           <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
-            About Us
+            <Link to="/about">About Us</Link>
           </div>
           <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
-            Contact
+            <Link to="/contact">Contact</Link>
           </div>
         </div>
         <div className="hidden md:flex">
-          <button className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-xl rounded-md py-2 px-4">
-            Login
-          </button>
+          <div className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-xl rounded-md py-2 px-4">
+            <Link to="/login">Want to write ?</Link>
+          </div>
         </div>
         <div onClick={toggleMobileMenu} className="flex md:hidden">
           {isMobileMenuOpen ? (
@@ -67,20 +68,25 @@ const Navbar = () => {
 
       {/* Mobile Screen */}
       {isMobileMenuOpen && (
-        <div className="px-6 py-4 transition-all duration-300">
+        <div className="fixed top-16 left-0 w-full z-30">
           <div
-            className="fixed top-0 left-0 w-full h-[40vh] bg-blue-500 text-white px-6 py-4"
+            className="w-full bg-blue-500 text-white px-6 py-4"
             onClick={closeMobileMenu}
           >
-            <div className="text-xl font-bold mb-4">Mobile Menu</div>
             <div className="cursor-pointer hover:text-gray-300 mb-2">
-              About Us
+              <Link to="/about">About Us</Link>
             </div>
-            <div className="cursor-pointer hover:text-gray-300 mb-2">Blog</div>
             <div className="cursor-pointer hover:text-gray-300 mb-2">
-              Contact
+              {" "}
+              <Link to="/blogs">Blog</Link>
             </div>
-            <div className="cursor-pointer hover:text-gray-300 mb-2">Login</div>
+            <div className="cursor-pointer hover:text-gray-300 mb-2">
+              <Link to="/contact">Contact</Link>
+            </div>
+            <div className="cursor-pointer hover:text-gray-300 mb-2">
+              {" "}
+              <Link to="/login">Want to write ?</Link>
+            </div>
           </div>
         </div>
       )}

@@ -1,5 +1,5 @@
 import { FaTwitter, FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -27,13 +27,16 @@ const Footer = () => {
         {/* Copyright Disclaimer */}
         <p className="text-sm">
           &copy; {currentYear} Phreddy. All rights reserved. |{" "}
-          <a href="#" className="text-blue-500 hover:underline">
+          <Link to="/privacy_policy" className="text-blue-500 hover:underline">
             Privacy Policy
-          </a>{" "}
+          </Link>{" "}
           |{" "}
-          <a href="#" className="text-blue-500 hover:underline">
+          <Link
+            to="/terms_of_service"
+            className="text-blue-500 hover:underline"
+          >
             Terms of Service
-          </a>
+          </Link>
         </p>
       </div>
     </footer>

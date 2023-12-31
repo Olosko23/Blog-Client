@@ -8,25 +8,26 @@ const Testimonial = () => {
     {
       id: 0,
       name: "John Doe",
-      position: "CEO, Company ABC",
+      title: "Happy Customer",
       content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.",
+        "I love using this platform! It has made my life so much easier. The user-friendly interface and features are fantastic.",
     },
     {
       id: 1,
       name: "Jane Smith",
-      position: "CTO, Company XYZ",
+      title: "Satisfied User",
       content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.",
+        "I've been using this service for months, and it's been a great experience. The support team is responsive, and the platform is reliable.",
     },
     {
       id: 2,
       name: "John Smith",
-      position: "CFO, Company IJK",
+      title: "Long-time Subscriber",
       content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.",
+        "Being a long-time subscriber, I appreciate the regular updates and new features. It keeps getting better and better!",
     },
   ];
+  
 
   const settings = {
     dots: true,
@@ -52,7 +53,7 @@ const Testimonial = () => {
                   {testimonial.name}
                 </h1>
                 <p className="text-gray-600 leading-6">{testimonial.content}</p>
-                <p className="text-gray-500 mt-4">{testimonial.position}</p>
+                <p className="text-gray-500 mt-4">{testimonial.title}</p>
               </div>
             </div>
           ))}

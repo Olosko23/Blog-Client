@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import Blog1 from "../../assets/blog2.jpg";
 import Pic2 from "../../assets/pic2.jpg";
 import Pic3 from "../../assets/pic3.png";
@@ -141,9 +141,12 @@ const Section1 = () => {
               <div className="mb-4">
                 <p className="text-gray-600 mb-2">{blog.overview}</p>
                 <div className="flex items-center space-x-2">
-                  <button className="text-blue-500 hover:underline">
+                  <Link
+                    to={`/blog/${blog.id}`}
+                    className="text-blue-500 hover:underline"
+                  >
                     Read More
-                  </button>
+                  </Link>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
@@ -166,9 +169,9 @@ const Section1 = () => {
         </div>
         <div className="mt-4 md:mt-6 lg:mt-8">
           <div className="grid place-items-center">
-            <button className="px-6 py-3 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
-              Discover more articles
-            </button>
+            <div className="px-6 py-3 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+              <Link to="/blogs">Discover more articles</Link>
+            </div>
           </div>
         </div>
       </section>
