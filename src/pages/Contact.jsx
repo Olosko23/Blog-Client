@@ -3,7 +3,7 @@ import Con from "../assets/con1.jpg";
 
 const Contact = () => {
   return (
-    <div className="flex min-h-screen max-w-6xl mx-auto items-center justify-center mt-12 md:mt-24">
+    <div className="flex min-h-screen max-w-6xl mx-auto items-center justify-center mt-12 md:mt-24 px-3">
       <div className="flex w-full">
         {/* Left Side - Contact Form and Social Links */}
         <div className="w-full md:w-1/2 pr-8">
