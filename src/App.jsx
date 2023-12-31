@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import About from "./pages/About/About";
 import Blog from "./pages/Blog/Blog";
 import Blogs from "./pages/Blog/Blogs";
-import Contact from "./pages/Contact/Contact";
+import Contact from "./pages/Contact";
 import Login from "./pages/Auth/Login";
 import Signup from "./pages/Auth/Signup";
 import ResetPassword from "./pages/Auth/resetPassword";
