@@ -7,7 +7,7 @@ const Contact = () => {
       <div className="flex w-full">
         {/* Left Side - Contact Form and Social Links */}
         <div className="w-full md:w-1/2 pr-8">
-          <h2 className="text-4xl font-bold mb-6 text-blue-600">
+          <h2 className="text-4xl font-bold mb-6 text-blue-600 text-center">
             Contact Admin
           </h2>
 
@@ -86,7 +86,7 @@ const Contact = () => {
             <p className="text-xl font-semibold text-gray-900">
               Connect with us on social media:
             </p>
-            <div className="flex space-x-4 mt-2">
+            <div className="flex items-center md:items-start space-x-4 mt-2">
               {/* Replace these links with the actual URLs */}
               <a href="#" className="social-link">
                 Twitter
