@@ -1,12 +1,19 @@
 import React from "react";
 import Con from "../assets/con1.jpg";
+import {
+  FaGithub,
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+} from "react-icons/fa";
 
 const Contact = () => {
   return (
     <div className="flex min-h-screen max-w-6xl mx-auto items-center justify-center mt-12 md:mt-24 px-3">
       <div className="flex w-full">
         {/* Left Side - Contact Form and Social Links */}
-        <div className="w-full md:w-1/2 pr-8">
+        <div className="w-full md:w-1/2">
           <h2 className="text-4xl font-bold mb-6 text-blue-600 text-center">
             Contact Admin
           </h2>
@@ -73,7 +80,7 @@ const Contact = () => {
           </form>
 
           {/* Contact Information */}
-          <div className="mt-8">
+          <div className="mt-8 text-center">
             <p className="text-xl font-semibold text-gray-900">
               Contact Information:
             </p>
@@ -82,27 +89,28 @@ const Contact = () => {
           </div>
 
           {/* Social Media Links */}
-          <div className="mt-8">
+          <div className="mt-8 text-center">
             <p className="text-xl font-semibold text-gray-900">
               Connect with us on social media:
             </p>
-            <div className="flex items-center md:items-start space-x-4 mt-2">
-              {/* Replace these links with the actual URLs */}
-              <a href="#" className="social-link">
-                Twitter
-              </a>
-              <a href="#" className="social-link">
-                Instagram
-              </a>
-              <a href="#" className="social-link">
-                LinkedIn
-              </a>
-              <a href="#" className="social-link">
-                Facebook
-              </a>
-              <a href="#" className="social-link">
-                GitHub
-              </a>
+            <div className="grid place-items-center">
+              <div className="flex space-x-3 mt-3">
+                <p className="">
+                  <FaTwitter />
+                </p>
+                <p className="">
+                  <FaInstagram />
+                </p>
+                <p className="">
+                  <FaLinkedin />
+                </p>
+                <p className="">
+                  <FaFacebook />
+                </p>
+                <p className="">
+                  <FaGithub />
+                </p>
+              </div>
             </div>
           </div>
         </div>
