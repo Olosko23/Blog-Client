@@ -10,10 +10,10 @@ import {
 
 const Contact = () => {
   return (
-    <div className="flex min-h-screen max-w-6xl mx-auto items-center justify-center mt-12 md:mt-24 px-3">
+    <div className="flex min-h-screen max-w-2xl mx-auto items-center justify-center mt-16 md:mt-32 px-3">
       <div className="flex w-full">
         {/* Left Side - Contact Form and Social Links */}
-        <div className="w-full md:w-1/2">
+        <div className="w-full">
           <h2 className="text-4xl font-bold mb-6 text-blue-600 text-center">
             Contact Admin
           </h2>
@@ -89,40 +89,29 @@ const Contact = () => {
           </div>
 
           {/* Social Media Links */}
-          <div className="mt-8 text-center">
+          <div className="mt-8 text-center md:hidden">
             <p className="text-xl font-semibold text-gray-900">
               Connect with us on social media:
             </p>
             <div className="grid place-items-center">
               <div className="flex space-x-3 mt-3">
-                <p className="">
-                  <FaTwitter />
+                <p className="hover:scale-105">
+                  <FaTwitter size={20} />
                 </p>
-                <p className="">
-                  <FaInstagram />
+                <p className="hover:scale-105">
+                  <FaInstagram size={20} />
                 </p>
-                <p className="">
-                  <FaLinkedin />
+                <p className="hover:scale-105">
+                  <FaLinkedin size={20} />
                 </p>
-                <p className="">
-                  <FaFacebook />
+                <p className="hover:scale-105">
+                  <FaFacebook size={20} />
                 </p>
-                <p className="">
-                  <FaGithub />
+                <p className="hover:scale-105">
+                  <FaGithub size={20} />
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Right Side - Graphic */}
-        <div className="hidden md:flex w-1/2">
-          <div className="h-full p-8">
-            <img
-              src={Con}
-              alt="Illustration"
-              className="object-cover w-full h-full rounded-md"
-            />
           </div>
         </div>
       </div>
