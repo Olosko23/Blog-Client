@@ -35,7 +35,7 @@ const Newsletter = () => {
                 to="/terms_of_service"
                 className="text-blue-500 hover:underline"
               >
-                terms and conditions
+                terms of service
               </Link>
             </p>
           </form>

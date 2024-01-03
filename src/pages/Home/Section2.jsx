@@ -5,7 +5,7 @@ const Section2 = () => {
     <div className="bg-gray-100 py-12">
       <div className="container mx-auto px-4 max-w-7xl py-12 text-center sm:text-start">
         {/* Added Header */}
-        <h1 className="text-4xl font-bold mb-8 text-gray-800">
+        <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">
           Explore Our Features
         </h1>
 
@@ -21,16 +21,14 @@ const Section2 = () => {
 
           {/* Text Section */}
           <section className="lg:w-1/2 pl-8">
-            <div className="border-l-4 pl-4">
-              <div className="mb-6">
-                <h2 className="font-semibold text-xl mb-2">
-                  Connect with a community
-                </h2>
-                <p className="text-gray-600">
-                  Join a vibrant community of like-minded individuals who share
-                  their thoughts and insights on a wide range of topics.
-                </p>
-              </div>
+            <div className="mb-6">
+              <h2 className="font-semibold text-xl mb-2">
+                Connect with a community
+              </h2>
+              <p className="text-gray-600">
+                Join a vibrant community of like-minded individuals who share
+                their thoughts and insights on a wide range of topics.
+              </p>
             </div>
             <div className="mb-6">
               <h2 className="font-semibold text-xl mb-2">
