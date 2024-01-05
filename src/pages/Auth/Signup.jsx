@@ -1,12 +1,51 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import blob2 from "../../assets/images.jpg";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/signup",
+        { username, email, password }
+      );
+      console.log(response.data);
+      setLoading(false);
+      navigate("/login");
+    } catch (error) {
+      let errorMessage = "An error occurred";
+      if (error.response && error.response.data && error.response.data.error) {
+        errorMessage = error.response.data.error;
+      } else if (error.request) {
+        errorMessage = "No response received from the server";
+      }
+      setError(errorMessage);
+      setLoading(false);
+    }
   };
 
   return (
@@ -19,7 +58,7 @@ const Signup = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6">
+        <form onSubmit={handleSignup} className="space-y-6">
           <div>
             <label
               htmlFor="username"
@@ -34,6 +73,7 @@ const Signup = () => {
                 type="text"
                 placeholder="YourUsername"
                 required
+                onChange={(e) => setUsername(e.target.value)}
                 className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -53,6 +93,7 @@ const Signup = () => {
                 type="email"
                 placeholder="user@email.com"
                 required
+                onChange={(e) => setEmail(e.target.value)}
                 className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -72,6 +113,7 @@ const Signup = () => {
                 type={showPassword ? "text" : "password"}
                 placeholder="*********"
                 required
+                onChange={(e) => setPassword(e.target.value)}
                 className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
               <button
@@ -103,9 +145,14 @@ const Signup = () => {
                 type="password"
                 placeholder="*********"
                 required
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
+          </div>
+
+          <div className="my-2">
+            {error && <p className="text-red-500 text-sm">{error}</p>}
           </div>
 
           <div>
@@ -113,7 +160,7 @@ const Signup = () => {
               type="submit"
               className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Sign up
+              {loading ? "Please Wait" : "Sign up"}
             </button>
           </div>
         </form>

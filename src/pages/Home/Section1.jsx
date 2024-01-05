@@ -93,24 +93,26 @@ const Section1 = () => {
       </section>
 
       <section className="mt-8">
-        <div class="flex flex-col items-center mb-4 space-y-2 md:flex-row md:justify-center md:space-x-4 md:space-y-0">
-          <span class="cursor-pointer text-blue-500 hover:underline">All</span>
-          <span class="cursor-pointer text-blue-500 hover:underline">
+        <div className="flex flex-col items-center mb-4 space-y-2 md:flex-row md:justify-center md:space-x-4 md:space-y-0">
+          <span className="cursor-pointer text-blue-500 hover:underline">
+            All
+          </span>
+          <span className="cursor-pointer text-blue-500 hover:underline">
             Technology
           </span>
-          <span class="cursor-pointer text-blue-500 hover:underline">
+          <span className="cursor-pointer text-blue-500 hover:underline">
             Healthcare
           </span>
-          <span class="cursor-pointer text-blue-500 hover:underline">
+          <span className="cursor-pointer text-blue-500 hover:underline">
             Science
           </span>
-          <span class="cursor-pointer text-blue-500 hover:underline">
+          <span className="cursor-pointer text-blue-500 hover:underline">
             Sports
           </span>
-          <span class="cursor-pointer text-blue-500 hover:underline">
+          <span className="cursor-pointer text-blue-500 hover:underline">
             Finance, Business and Economics
           </span>
-          <span class="cursor-pointer text-blue-500 hover:underline">
+          <span className="cursor-pointer text-blue-500 hover:underline">
             Agriculture
           </span>
         </div>

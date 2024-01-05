@@ -1,19 +1,13 @@
 import React from "react";
-import Con from "../assets/con1.jpg";
-import {
-  FaGithub,
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,
-} from "react-icons/fa";
+//import Con from "../assets/con1.jpg";
+//import {FaGithub,FaFacebook,FaTwitter,FaInstagram,FaLinkedin,} from "react-icons/fa";
 
 const Contact = () => {
   return (
     <div className="flex min-h-screen max-w-2xl mx-auto items-center justify-center mt-16 md:mt-32 px-3">
       <div className="flex w-full">
         {/* Left Side - Contact Form and Social Links */}
-        <div className="w-full">
+        <div className="w-full py-10">
           <h2 className="text-4xl font-bold mb-6 text-blue-600 text-center">
             Contact Admin
           </h2>
@@ -86,32 +80,6 @@ const Contact = () => {
             </p>
             <p className="text-gray-700">Phone: +254742285229</p>
             <p className="text-gray-700">Email: admin@phreddy.com</p>
-          </div>
-
-          {/* Social Media Links */}
-          <div className="mt-8 text-center md:hidden">
-            <p className="text-xl font-semibold text-gray-900">
-              Connect with us on social media:
-            </p>
-            <div className="grid place-items-center">
-              <div className="flex space-x-3 mt-3">
-                <p className="hover:scale-105">
-                  <FaTwitter size={20} />
-                </p>
-                <p className="hover:scale-105">
-                  <FaInstagram size={20} />
-                </p>
-                <p className="hover:scale-105">
-                  <FaLinkedin size={20} />
-                </p>
-                <p className="hover:scale-105">
-                  <FaFacebook size={20} />
-                </p>
-                <p className="hover:scale-105">
-                  <FaGithub size={20} />
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
