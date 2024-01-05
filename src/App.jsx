@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTopOnPageChange from "./components/ScrollToTopOnPageChange";
 import Home from "./pages/Home/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -14,12 +15,15 @@ import Terms from "./pages/Misc/Terms";
 import Privacy from "./pages/Misc/Privacy";
 import Create from "./pages/Blog/Create";
 import Details from "./pages/Blog/Details";
+import ScrollToTop from "./components/BackToTop";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Navbar />
+        <ScrollToTopOnPageChange />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

@@ -1,16 +1,55 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import blob2 from "../../assets/images.jpg";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
+  axios.defaults.withCredentials = true;
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/login",
+        { email, password },
+        { withCredentials: true }
+      );
+
+      console.log(response.headers);
+
+      if (response.headers["set-cookie"]) {
+        const jwtCookie = response.headers["set-cookie"];
+        document.cookie = jwtCookie;
+      }
+
+      setLoading(false);
+      navigate("/login");
+    } catch (error) {
+      if (error.response) {
+        setError(error.response.data.error);
+      } else {
+        setError("An error occurred. Please try again later.");
+      }
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="flex h-[77vh] md:min-h-full flex-1 flex-col justify-center mt-16 px-6 py-16 lg:px-8">
+    <div className="flex h-[87vh] md:min-h-full flex-1 flex-col justify-center mt-16 px-6 py-16 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-8">
         <img className="mx-auto h-10 w-auto" src={blob2} alt="Phreddy" />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -19,7 +58,7 @@ const Login = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6">
+        <form onSubmit={handleLogin} className="space-y-6">
           <div>
             <label
               htmlFor="email"
@@ -34,6 +73,7 @@ const Login = () => {
                 type="email"
                 placeholder="user@email.com"
                 required
+                onChange={(e) => setEmail(e.target.value)}
                 className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -63,6 +103,7 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 placeholder="*********"
                 required
+                onChange={(e) => setPassword(e.target.value)}
                 className="block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
               <button
@@ -75,12 +116,16 @@ const Login = () => {
             </div>
           </div>
 
+          <div className="my-2">
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+          </div>
+
           <div>
             <button
               type="submit"
               className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Login
+              {loading ? "Please Wait" : "Login"}
             </button>
           </div>
         </form>
