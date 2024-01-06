@@ -1,7 +1,9 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import blob2 from "../../assets/images.jpg";
+import { setUser } from "../../store/Slices/userSlice";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,11 +13,21 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const user = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/blogs");
+    }
+  }, [user, navigate]);
+
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
   axios.defaults.withCredentials = true;
+
+  const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -29,21 +41,23 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      console.log(response.headers);
+      const jwtCookie = response.headers["set-cookie"];
 
-      if (response.headers["set-cookie"]) {
-        const jwtCookie = response.headers["set-cookie"];
-        document.cookie = jwtCookie;
-      }
+      document.cookie = jwtCookie;
+      const userData = response.data;
 
-      setLoading(false);
-      navigate("/login");
+      dispatch(setUser(userData));
+
+      navigate("/blogs");
+
+      console.log("Login successfull");
     } catch (error) {
       if (error.response) {
         setError(error.response.data.error);
       } else {
         setError("An error occurred. Please try again later.");
       }
+    } finally {
       setLoading(false);
     }
   };

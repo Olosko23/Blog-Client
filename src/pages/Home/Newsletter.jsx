@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Newsletter = () => {
+  const user = useSelector((state) => state.user.user);
+
   return (
     <div className="bg-gray-100 py-12">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-4">
@@ -22,9 +25,11 @@ const Newsletter = () => {
               placeholder="Your email address"
               className="w-full py-2 px-4 mb-4 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
               required
+              disabled={user}
             />
             <button
               type="submit"
+              disabled={user}
               className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
             >
               Subscribe Now

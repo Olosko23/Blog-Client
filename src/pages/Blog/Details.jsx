@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Details = () => {
   const [avatar, setAvatar] = useState(null);
@@ -6,6 +8,16 @@ const Details = () => {
   const [socialMedia, setSocialMedia] = useState("");
   const [occupation, setOccupation] = useState("");
   const [contactDetails, setContactDetails] = useState("");
+
+  const navigate = useNavigate();
+
+  const user = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   // Handle avatar file change
   const handleAvatarChange = (e) => {
@@ -38,7 +50,7 @@ const Details = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 max-w-5xl py-12 mt-24">
+    <div className="container mx-auto px-4 max-w-4xl py-12 mt-24">
       <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">
         Update Your Profile
       </h1>
