@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Hero = () => {
+  const user = useSelector((state) => state.user.user);
+
   return (
     <div className="h-[75vh] bg-gradient-to-b from-blue-500 to-blue-700 text-white flex flex-col justify-center">
       <div className="text-center mx-auto max-w-7xl">
@@ -14,9 +17,11 @@ const Hero = () => {
           <div className="py-2 px-4 rounded-md border-2 bg-white text-slate-700 font-semibold hover:bg-slate-700 hover:text-white transition duration-300">
             <Link to="/blogs">Read Now</Link>
           </div>
-          <div className="py-2 px-4 rounded-md border-2 text-white font-semibold bg-slate-700 hover:bg-slate-800 transition duration-300">
-            <Link to="/signup">Sign Up</Link>
-          </div>
+          {!user && (
+            <div className="py-2 px-4 rounded-md border-2 text-white font-semibold bg-slate-700 hover:bg-slate-800 transition duration-300">
+              <Link to="/signup">Sign Up</Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

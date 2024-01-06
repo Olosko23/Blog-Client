@@ -1,11 +1,17 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiMenuFries } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { removeUser } from "../store/Slices/userSlice";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +32,11 @@ const Navbar = () => {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    dispatch(removeUser());
+    navigate("/");
   };
 
   return (
@@ -53,9 +64,26 @@ const Navbar = () => {
           </div>
         </div>
         <div className="hidden md:flex">
-          <div className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-xl rounded-md py-2 px-4">
-            <Link to="/login">Want to write ?</Link>
-          </div>
+          {user.user ? (
+            <div className="flex justify-center space-x-3">
+              <div className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-md rounded-md py-1 px-2">
+                <Link to="/create">Create</Link>
+              </div>
+              <div className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-md rounded-md py-1 px-2">
+                <Link to="/details">Profile</Link>
+              </div>
+              <div
+                className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-md rounded-md py-1 px-2"
+                onClick={handleLogout}
+              >
+                Logout
+              </div>
+            </div>
+          ) : (
+            <div className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-xl rounded-md py-2 px-4">
+              <Link to="/login">Want to write ?</Link>
+            </div>
+          )}
         </div>
         <div onClick={toggleMobileMenu} className="flex md:hidden">
           {isMobileMenuOpen ? (
@@ -84,8 +112,26 @@ const Navbar = () => {
               <Link to="/contact">Contact</Link>
             </div>
             <div className="cursor-pointer hover:text-gray-300 mb-2">
-              {" "}
-              <Link to="/login">Want to write ?</Link>
+              {user.user ? (
+                <div>
+                  <div className="cursor-pointer  mb-2">
+                    <Link to="/create">Create</Link>
+                  </div>
+                  <div className="cursor-pointer  mb-2">
+                    <Link to="/profile">Profile</Link>
+                  </div>
+                  <div
+                    className="cursor-pointer underline  mb-2"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <Link to="/login">Want to write ?</Link>
+                </div>
+              )}
             </div>
           </div>
         </div>

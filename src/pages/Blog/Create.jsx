@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -7,6 +9,15 @@ const Create = () => {
   const [title, setTitle] = useState("");
   const [overview, setOverview] = useState("");
   const [content, setContent] = useState("");
+  const navigate = useNavigate();
+
+  const user = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   const handleThumbnailChange = (e) => {
     const file = e.target.files[0];
@@ -74,7 +85,7 @@ const Create = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 max-w-7xl py-12 mt-24">
+    <div className="container mx-auto px-4 max-w-4xl py-12 mt-24">
       <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">
         Create a New Article
       </h1>

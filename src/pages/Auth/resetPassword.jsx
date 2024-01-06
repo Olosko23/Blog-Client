@@ -1,6 +1,15 @@
 import React from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const ResetPassword = () => {
+  const user = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
   return (
     <div className="flex h-[75dvh] md:min-h-full flex-1 flex-col justify-center mt-16 px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
