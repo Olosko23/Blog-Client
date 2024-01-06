@@ -5,7 +5,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const Create = () => {
-  const [thumbnail, setThumbnail] = useState(null); // Use null instead of an empty string for a file
+  const [thumbnail, setThumbnail] = useState(null);
   const [title, setTitle] = useState("");
   const [overview, setOverview] = useState("");
   const [content, setContent] = useState("");
@@ -23,8 +23,6 @@ const Create = () => {
     const file = e.target.files[0];
     setThumbnail(file);
 
-    // If you want to display a preview of the selected image
-    // You can use the FileReader API to read the image and set it as a data URL
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {

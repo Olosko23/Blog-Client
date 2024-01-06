@@ -1,87 +1,8 @@
 import { Link } from "react-router-dom";
-import Blog1 from "../../assets/blog2.jpg";
-import Pic2 from "../../assets/pic2.jpg";
-import Pic3 from "../../assets/pic3.png";
-import Pic4 from "../../assets/pic4.jpg";
-import Pic5 from "../../assets/pic5.jpg";
-import Pic6 from "../../assets/pic6.jpg";
-import Pic7 from "../../assets/pic7.jpg";
+import { blogs } from "../../constants/Blogs";
 
 const Section1 = () => {
-  const blogs = [
-    {
-      id: 0,
-      src: Blog1,
-      category: "Science",
-      title: "Title of the First Blog Post",
-      overview:
-        "Explore the fascinating world of science and its latest discoveries.",
-      author_img_src: Pic4,
-      author_name: "Jane Smith",
-      date: "11 Jan 2024",
-      readtime: "4 mins",
-    },
-    {
-      id: 1,
-      src: Pic2,
-      category: "Science",
-      title: "Title of the First Blog Post",
-      overview:
-        "Explore the fascinating world of science and its latest discoveries.",
-      author_img_src: Pic2,
-      author_name: "Jane Smith",
-      date: "11 Jan 2024",
-      readtime: "4 mins",
-    },
-    {
-      id: 2,
-      src: Pic5,
-      category: "Technology",
-      title: "Title of the First Blog Post",
-      overview:
-        "Explore the fascinating world of science and its latest discoveries.",
-      author_img_src: Blog1,
-      author_name: "Jane Smith",
-      date: "11 Jan 2024",
-      readtime: "4 mins",
-    },
-    {
-      id: 3,
-      src: Pic6,
-      category: "Business",
-      title: "Title of the First Blog Post",
-      overview:
-        "Explore the fascinating world of science and its latest discoveries.",
-      author_img_src: Pic3,
-      author_name: "Jane Smith",
-      date: "11 Jan 2024",
-      readtime: "4 mins",
-    },
-    {
-      id: 4,
-      src: Blog1,
-      category: "Business",
-      title: "Title of the First Blog Post",
-      overview:
-        "Explore the fascinating world of science and its latest discoveries.",
-      author_img_src: Pic4,
-      author_name: "Jane Smith",
-      date: "11 Jan 2024",
-      readtime: "4 mins",
-    },
-    {
-      id: 5,
-      src: Pic7,
-      category: "Business",
-      title: "Title of the First Blog Post",
-      overview:
-        "Explore the fascinating world of science and its latest discoveries.",
-      author_img_src: Pic3,
-      author_name: "Jane Smith",
-      date: "11 Jan 2024",
-      readtime: "4 mins",
-    },
-  ];
+  const limitedBlogs = blogs.slice(0, 6);
 
   return (
     <div className="container mx-auto px-4 max-w-7xl py-12">
@@ -120,7 +41,7 @@ const Section1 = () => {
         <hr />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-2">
-          {blogs.map((blog) => (
+          {limitedBlogs.map((blog) => (
             <article
               key={blog.id}
               className="bg-white p-6 rounded-md shadow-md"
