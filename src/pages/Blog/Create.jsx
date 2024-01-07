@@ -9,6 +9,10 @@ const Create = () => {
   const [title, setTitle] = useState("");
   const [overview, setOverview] = useState("");
   const [content, setContent] = useState("");
+  const [tags, setTags] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.user.user);
@@ -43,19 +47,45 @@ const Create = () => {
     setOverview(e.target.value);
   };
 
+  const handleTagsChange = (e) => {
+    setTags(e.target.value);
+  };
+
   const handleContentChange = (value) => {
     setContent(value);
   };
 
-  const handleSubmit = () => {
-    // Handle the submission of the form data (thumbnail, title, overview, content)
-    // You can send this data to your server or perform any other necessary actions
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+
     console.log({
-      thumbnail,
+      coverImage: thumbnail,
       title,
       overview,
       content,
+      tags,
     });
+
+    try {
+      const response = await axios.post(
+        "https://phreddy-blog.onrender.com/api/posts",
+        { coverImage: thumbnail, title, content, tags, overview },
+        { withCredentials: true }
+      );
+      if (response.status === 201) {
+        setSuccess(true);
+      }
+    } catch (error) {
+      if (error.response) {
+        setError(error.response.data.error);
+      } else {
+        setError("An error occurred. Please try again later.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const modules = {
@@ -158,6 +188,25 @@ const Create = () => {
 
         <div className="mb-4">
           <label
+            htmlFor="tags"
+            className="block text-gray-600 font-semibold mb-2"
+          >
+            Category:
+          </label>
+          <textarea
+            id="overview"
+            value={tags}
+            onChange={handleTagsChange}
+            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
+          />
+          <p className="text-gray-500 text-sm">
+            Which category does the article belong to (science, technology,
+            politics, business){" "}
+          </p>
+        </div>
+
+        <div className="mb-4">
+          <label
             htmlFor="content"
             className="block text-gray-600 font-semibold mb-2"
           >
@@ -178,8 +227,16 @@ const Create = () => {
             type="submit"
             className="bg-blue-500 text-white py-2 mt-12 px-4 rounded hover:bg-blue-600"
           >
-            Create Blog
+            {loading ? "Please Wait" : "Create Blog"}
           </button>
+        </div>
+        <div className="my-2">
+          {error && <div className="text-red-500">{error}</div>}
+        </div>
+        <div className="my-2">
+          {success && (
+            <div className="text-green-500">Article Posted Sucessfully!</div>
+          )}
         </div>
       </form>
     </div>
