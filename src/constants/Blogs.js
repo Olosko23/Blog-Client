@@ -22,7 +22,6 @@ export const blogs = [
     <style>
       body {
         line-height: 1.6;
-        margin: 20px;
       }
       h1, h2 {
         color: #333;
@@ -79,7 +78,6 @@ export const blogs = [
       <style>
         body {
           line-height: 1.6;
-          margin: 20px;
         }
         h2 {
           color: #333;
