@@ -52,17 +52,20 @@ const Navbar = () => {
         <div className="cursor-pointer font-bold text-2xl hover:scale-105">
           <Link to="/">Phreddy</Link>
         </div>
-        <div className="md:flex justify-between space-x-4 hidden">
-          <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
-            <Link to="/blogs">Blog</Link>
+        {!user.user && (
+          <div className="md:flex justify-between space-x-4 hidden">
+            <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
+              <Link to="/blogs">Blog</Link>
+            </div>
+            <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
+              <Link to="/about">About Us</Link>
+            </div>
+            <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
+              <Link to="/contact">Contact</Link>
+            </div>
           </div>
-          <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
-            <Link to="/about">About Us</Link>
-          </div>
-          <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
-            <Link to="/contact">Contact</Link>
-          </div>
-        </div>
+        )}
+
         <div className="hidden md:flex">
           {user.user ? (
             <div className="flex justify-center space-x-3">
