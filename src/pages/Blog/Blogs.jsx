@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { blogs } from "../../constants/Blogs";
 
 const Blogs = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const blogsPerPage = 9;
+  const blogsPerPage = 6;
 
   // Filtered and paginated blogs
   const filteredBlogs =
@@ -23,6 +23,10 @@ const Blogs = () => {
     setCurrentPage(1); // Reset current page when changing the category
     setSelectedCategory(category);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
 
   return (
     <div className="container mx-auto px-4 max-w-7xl py-12 mt-24">

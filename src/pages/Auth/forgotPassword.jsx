@@ -1,17 +1,19 @@
 import React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
   const user = useSelector((state) => state.user.user);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     if (user) {
       navigate("/");
     }
   }, [user, navigate]);
   return (
-    <div className="flex h-[69vh] md:min-h-full flex-col mt-[135px] justify-center px-6 py-12 lg:px-8">
+    <div className="flex h-[71vh] md:min-h-full flex-col mt-[135px] justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Forgot Your Password?
