@@ -46,11 +46,11 @@ const Footer = () => {
             <>
               <Link to="/blogs" className="text-blue-500 hover:underline">
                 Blogs
-              </Link>
+              </Link>{" "}
               |{" "}
               <Link to="/about" className="text-blue-500 hover:underline">
                 About Us
-              </Link>
+              </Link>{" "}
               |{" "}
               <Link to="/contact" className="text-blue-500 hover:underline">
                 Contact US
