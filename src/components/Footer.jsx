@@ -1,7 +1,11 @@
 import { FaTwitter, FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  const user = useSelector((state) => state.user.user);
 
   return (
     <footer className="bg-gray-800 text-white py-8">
@@ -36,7 +40,23 @@ const Footer = () => {
             className="text-blue-500 hover:underline"
           >
             Terms of Service
-          </Link>
+          </Link>{" "}
+          |{" "}
+          {user && (
+            <>
+              <Link to="/blogs" className="text-blue-500 hover:underline">
+                Blogs
+              </Link>
+              |{" "}
+              <Link to="/about" className="text-blue-500 hover:underline">
+                About Us
+              </Link>
+              |{" "}
+              <Link to="/contact" className="text-blue-500 hover:underline">
+                Contact US
+              </Link>
+            </>
+          )}
         </p>
       </div>
     </footer>
