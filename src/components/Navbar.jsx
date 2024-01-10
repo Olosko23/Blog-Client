@@ -53,7 +53,7 @@ const Navbar = () => {
           <Link to="/">Phreddy</Link>
         </div>
         {!user.user && (
-          <div className="md:flex justify-between space-x-4 hidden">
+          <div className="md:flex justify-evenly space-x-4 hidden">
             <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
               <Link to="/blogs">Blog</Link>
             </div>
@@ -73,7 +73,7 @@ const Navbar = () => {
                 <Link to="/create">Create</Link>
               </div>
               <div className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-md rounded-md py-1 px-2">
-                <Link to="/details">Profile</Link>
+                <Link to="/profile">Profile</Link>
               </div>
               <div
                 className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-md rounded-md py-1 px-2"
