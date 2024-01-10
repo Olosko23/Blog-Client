@@ -16,6 +16,7 @@ import Privacy from "./pages/Misc/Privacy";
 import Create from "./pages/Blog/Create";
 import Details from "./pages/Blog/Details";
 import ScrollToTop from "./components/BackToTop";
+import Profile from "./pages/Auth/Profile";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/privacy_policy" element={<Privacy />} />
           <Route path="/terms_of_service" element={<Terms />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/details" element={<Details />} />
         </Routes>
         <Footer />
