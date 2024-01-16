@@ -10,7 +10,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const Navbar = () => {
         <div className="cursor-pointer font-bold text-2xl hover:scale-105">
           <Link to="/">Phreddy</Link>
         </div>
-        {!user.user && (
+        {!user && (
           <div className="md:flex justify-evenly space-x-4 hidden">
             <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
               <Link to="/blogs">Blog</Link>
@@ -67,7 +67,7 @@ const Navbar = () => {
         )}
 
         <div className="hidden md:flex">
-          {user.user ? (
+          {user ? (
             <div className="flex justify-center space-x-3">
               <div className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-md rounded-md py-1 px-2">
                 <Link to="/create">Create</Link>
@@ -115,7 +115,7 @@ const Navbar = () => {
               <Link to="/contact">Contact</Link>
             </div>
             <div className="cursor-pointer hover:text-gray-300 mb-2">
-              {user.user ? (
+              {user ? (
                 <div>
                   <div className="cursor-pointer  mb-2">
                     <Link to="/create">Create</Link>
