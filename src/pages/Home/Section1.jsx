@@ -42,9 +42,10 @@ const Section1 = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-2">
           {limitedBlogs.map((blog) => (
-            <article
+            <Link
+              to={`/blog/${blog.id}`}
               key={blog.id}
-              className="bg-white p-6 rounded-md shadow-md"
+              className="bg-white p-6 rounded-md shadow-md hover:scale-105 duration-300"
             >
               <div>
                 <img
@@ -61,14 +62,6 @@ const Section1 = () => {
               </h2>
               <div className="mb-4">
                 <p className="text-gray-600 mb-2">{blog.overview}</p>
-                <div className="flex items-center space-x-2">
-                  <Link
-                    to={`/blog/${blog.id}`}
-                    className="text-blue-500 hover:underline"
-                  >
-                    Read More
-                  </Link>
-                </div>
               </div>
               <div className="flex items-center space-x-4">
                 <img
@@ -85,7 +78,7 @@ const Section1 = () => {
                   </div>
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
         <div className="mt-4 md:mt-6 lg:mt-8">
