@@ -17,6 +17,7 @@ import Create from "./pages/Blog/Create";
 import Details from "./pages/Blog/Details";
 import ScrollToTop from "./components/BackToTop";
 import Profile from "./pages/Auth/Profile";
+import Categories from "./pages/Blog/Categories";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/create" element={<Create />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/details" element={<Details />} />
+          <Route path="/categories/:category" element={<Categories />} />
         </Routes>
         <Footer />
       </BrowserRouter>

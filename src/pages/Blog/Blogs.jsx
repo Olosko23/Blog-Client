@@ -20,7 +20,7 @@ const Blogs = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleCategoryClick = (category) => {
-    setCurrentPage(1); // Reset current page when changing the category
+    setCurrentPage(1);
     setSelectedCategory(category);
   };
 
@@ -29,7 +29,7 @@ const Blogs = () => {
   }, [currentPage]);
 
   return (
-    <div className="container mx-auto px-4 max-w-7xl py-12 mt-24">
+    <div className="container mx-auto px-4 md:px-8 max-w-7xl py-12 mt-24">
       <section className="text-center">
         <h1 className="text-4xl font-bold mb-8 text-gray-800">
           Explore Our Blog
