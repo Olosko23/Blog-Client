@@ -15,9 +15,12 @@ const Section1 = () => {
 
       <section className="mt-8">
         <div className="flex flex-col items-center mb-4 space-y-2 md:flex-row md:justify-center md:space-x-4 md:space-y-0">
-          <span className="cursor-pointer text-blue-500 hover:underline">
+          <Link
+            to="/blogs"
+            className="cursor-pointer text-blue-500 hover:underline"
+          >
             All
-          </span>
+          </Link>
           <span className="cursor-pointer text-blue-500 hover:underline">
             Technology
           </span>

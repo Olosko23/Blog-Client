@@ -52,41 +52,43 @@ const Navbar = () => {
         <div className="cursor-pointer font-bold text-2xl hover:scale-105">
           <Link to="/">Phreddy</Link>
         </div>
-        {!user && (
-          <div className="md:flex justify-evenly space-x-4 hidden">
-            <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
-              <Link to="/blogs">Blog</Link>
-            </div>
-            <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
-              <Link to="/about">About Us</Link>
-            </div>
-            <div className="cursor-pointer hover:text-blue-800 font-semibold text-xl">
-              <Link to="/contact">Contact</Link>
-            </div>
-          </div>
-        )}
-
-        <div className="hidden md:flex">
-          {user ? (
-            <div className="flex justify-center space-x-3">
-              <div className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-md rounded-md py-1 px-2">
-                <Link to="/create">Create</Link>
+        <div className="flex justify-end space-x-3 text-center items-center">
+          {!user && (
+            <div className="md:flex justify-evenly space-x-4 hidden">
+              <div className="cursor-pointer hover:text-blue-800 font-semibold text-lg">
+                <Link to="/blogs">Blog</Link>
               </div>
-              <div className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-md rounded-md py-1 px-2">
-                <Link to="/profile">Profile</Link>
+              <div className="cursor-pointer hover:text-blue-800 font-semibold text-lg">
+                <Link to="/about">About Us</Link>
               </div>
-              <div
-                className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-md rounded-md py-1 px-2"
-                onClick={handleLogout}
-              >
-                Logout
+              <div className="cursor-pointer hover:text-blue-800 font-semibold text-lg">
+                <Link to="/contact">Contact</Link>
               </div>
-            </div>
-          ) : (
-            <div className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-xl rounded-md py-2 px-4">
-              <Link to="/login">Want to write ?</Link>
             </div>
           )}
+
+          <div className="hidden md:flex">
+            {user ? (
+              <div className="flex justify-center space-x-3">
+                <div className="cursor-pointer hover:text-blue-800 font-semibold text-lg">
+                  <Link to="/create">Create</Link>
+                </div>
+                <div className="cursor-pointer hover:text-blue-800 font-semibold text-lg">
+                  <Link to="/profile">Profile</Link>
+                </div>
+                <div
+                  className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-md rounded-md py-1 px-2"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </div>
+              </div>
+            ) : (
+              <div className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-lg rounded-md py-1 px-2">
+                <Link to="/login">Want to write ?</Link>
+              </div>
+            )}
+          </div>
         </div>
         <div onClick={toggleMobileMenu} className="flex md:hidden">
           {isMobileMenuOpen ? (
