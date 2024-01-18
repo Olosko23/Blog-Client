@@ -10,7 +10,7 @@ const Create = () => {
   const [title, setTitle] = useState("");
   const [overview, setOverview] = useState("");
   const [content, setContent] = useState("");
-  const [tags, setTags] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -49,7 +49,7 @@ const Create = () => {
   };
 
   const handleTagsChange = (e) => {
-    setTags(e.target.value);
+    setSelectedCategory(e.target.value);
   };
 
   const handleContentChange = (value) => {
@@ -61,30 +61,27 @@ const Create = () => {
     setError(null);
     setLoading(true);
 
-    console.log({
-      coverImage: thumbnail,
-      title,
-      overview,
-      content,
-      tags,
-    });
-
     try {
       const response = await axios.post(
-        "https://phreddy-blog.onrender.com/api/posts",
-        { coverImage: thumbnail, title, content, tags, overview },
-        { withCredentials: true }
+        "https://phreddy-blog.onrender.com/api/articles",
+        {
+          thumbnail: {
+            title: "image",
+            imageUrl: "https://phreddy.netlify.app/assets/pic2-dzhwWmxr.jpg",
+          },
+          author: "John Doe",
+          title,
+          content,
+          category: selectedCategory,
+          overview,
+        }
       );
       if (response.status === 201) {
         setSuccess(true);
+        setLoading(false);
       }
     } catch (error) {
-      if (error.response) {
-        setError(error.response.data.error);
-      } else {
-        setError("An error occurred. Please try again later.");
-      }
-    } finally {
+      console.log(error);
       setLoading(false);
     }
   };
@@ -111,6 +108,9 @@ const Create = () => {
     "link",
     "image",
     "video",
+    "align",
+    "paragraph",
+    "color",
   ];
 
   return (
@@ -194,15 +194,24 @@ const Create = () => {
           >
             Category:
           </label>
-          <textarea
-            id="overview"
-            value={tags}
+          <select
+            value={selectedCategory}
             onChange={handleTagsChange}
             className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
-          />
+          >
+            <option value="" disabled>
+              Select a Category
+            </option>
+            <option value="Business">Business</option>
+            <option value="Sports">Sports</option>
+            <option value="Agriculture">Agriculture</option>
+            <option value="Finance">Finance</option>
+            <option value="Technology">Technology</option>
+            <option value="Science">Science</option>
+          </select>
           <p className="text-gray-500 text-sm">
             Which category does the article belong to (science, technology,
-            politics, business){" "}
+            politics, business)?
           </p>
         </div>
 

@@ -4,16 +4,20 @@ import axios from "axios";
 
 const Section1 = () => {
   const [randomArticles, setRandomArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchRandomArticles = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(
         "https://phreddy-blog.onrender.com/api/articles/random"
       );
 
       setRandomArticles(response.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -59,48 +63,115 @@ const Section1 = () => {
         </div>
 
         <hr />
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-2">
-          {randomArticles.map((article) => (
-            <Link
-              to={`/article/${article._id}`}
-              key={article._id}
-              className="bg-white p-6 rounded-md shadow-md hover:scale-105 duration-300"
-            >
-              <div>
-                <img
-                  src={article.thumbnail.imageUrl}
-                  className="h-40 w-full object-cover rounded-md mb-4"
-                  alt="Blog_Image"
-                />
-              </div>
-              <p className="text-blue-500 text-sm cursor-pointer">
-                {article.category}
-              </p>
-              <h2 className="text-xl font-semibold mb-2 cursor-pointer hover:text-gray-600">
-                {article.title}
-              </h2>
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-2">
+            <Link className="bg-white p-6 rounded-md shadow-md animate-pulse">
+              <div className="h-40 w-full object-cover rounded-md mb-4 bg-gray-300"></div>
+              <p className="text-blue-500 text-sm cursor-pointer bg-gray-200 h-4 w-16 rounded-md mb-2"></p>
+              <h2 className="text-xl font-semibold mb-2 cursor-pointer hover:text-gray-600 bg-gray-200 h-6 w-3/4 rounded-md"></h2>
               <div className="mb-4">
-                <p className="text-gray-600 mb-2">{article.overview}</p>
+                <p className="text-gray-600 mb-2 bg-gray-200 h-4 w-full rounded-md"></p>
               </div>
               <div className="flex items-center space-x-4">
-                <img
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  className="h-9 w-9 rounded-full"
-                  alt="Author_Image"
-                />
+                <div className="h-9 w-9 rounded-full bg-gray-300"></div>
                 <div>
-                  <h3 className="font-semibold">{article.author}</h3>
+                  <h3 className="font-semibold bg-gray-200 h-4 w-20 rounded-md"></h3>
                   <div className="text-sm text-gray-500 flex items-center">
-                    <p>{article.date}</p>
+                    <p className="bg-gray-200 h-4 w-16 rounded-md"></p>
                     <span className="mx-1">•</span> {/* Divider */}
-                    <p>{article.readTime} mins read</p>
+                    <p className="bg-gray-200 h-4 w-12 rounded-md"></p>
                   </div>
                 </div>
               </div>
             </Link>
-          ))}
-        </div>
+            <Link className="bg-white p-6 rounded-md shadow-md animate-pulse">
+              <div className="h-40 w-full object-cover rounded-md mb-4 bg-gray-300"></div>
+              <p className="text-blue-500 text-sm cursor-pointer bg-gray-200 h-4 w-16 rounded-md mb-2"></p>
+              <h2 className="text-xl font-semibold mb-2 cursor-pointer hover:text-gray-600 bg-gray-200 h-6 w-3/4 rounded-md"></h2>
+              <div className="mb-4">
+                <p className="text-gray-600 mb-2 bg-gray-200 h-4 w-full rounded-md"></p>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="h-9 w-9 rounded-full bg-gray-300"></div>
+                <div>
+                  <h3 className="font-semibold bg-gray-200 h-4 w-20 rounded-md"></h3>
+                  <div className="text-sm text-gray-500 flex items-center">
+                    <p className="bg-gray-200 h-4 w-16 rounded-md"></p>
+                    <span className="mx-1">•</span> {/* Divider */}
+                    <p className="bg-gray-200 h-4 w-12 rounded-md"></p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link className="bg-white p-6 rounded-md shadow-md animate-pulse">
+              <div className="h-40 w-full object-cover rounded-md mb-4 bg-gray-300"></div>
+              <p className="text-blue-500 text-sm cursor-pointer bg-gray-200 h-4 w-16 rounded-md mb-2"></p>
+              <h2 className="text-xl font-semibold mb-2 cursor-pointer hover:text-gray-600 bg-gray-200 h-6 w-3/4 rounded-md"></h2>
+              <div className="mb-4">
+                <p className="text-gray-600 mb-2 bg-gray-200 h-4 w-full rounded-md"></p>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="h-9 w-9 rounded-full bg-gray-300"></div>
+                <div>
+                  <h3 className="font-semibold bg-gray-200 h-4 w-20 rounded-md"></h3>
+                  <div className="text-sm text-gray-500 flex items-center">
+                    <p className="bg-gray-200 h-4 w-16 rounded-md"></p>
+                    <span className="mx-1">•</span> {/* Divider */}
+                    <p className="bg-gray-200 h-4 w-12 rounded-md"></p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-2">
+            {randomArticles.map((article) => (
+              <Link
+                to={`/article/${article._id}`}
+                key={article._id}
+                className="bg-white p-6 rounded-md shadow-md hover:scale-105 duration-300"
+              >
+                <div>
+                  <img
+                    src={article.thumbnail.imageUrl}
+                    className="h-40 w-full object-cover rounded-md mb-4"
+                    alt="Blog_Image"
+                  />
+                </div>
+                <p className="text-blue-500 text-sm cursor-pointer">
+                  {article.category}
+                </p>
+                <h2 className="text-xl font-semibold mb-2 cursor-pointer hover:text-gray-600">
+                  {article.title}
+                </h2>
+                <div className="mb-4">
+                  <p className="text-gray-600 mb-2">{article.overview}</p>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    className="h-9 w-9 rounded-full"
+                    alt="Author_Image"
+                  />
+                  <div>
+                    <h3 className="font-semibold">{article.author}</h3>
+                    <div className="text-sm text-gray-500 flex items-center">
+                      <p>
+                        {new Date(article.updatedAt).toLocaleString(undefined, {
+                          dateStyle: "short",
+                          timeStyle: "short",
+                        })}
+                      </p>
+                      <span className="mx-1">•</span> {/* Divider */}
+                      <p>{article.readTime} mins read</p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+
         <div className="mt-4 md:mt-6 lg:mt-8">
           <div className="grid place-items-center">
             <div className="px-6 py-3 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
