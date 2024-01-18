@@ -31,7 +31,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blog/:id" element={<Blog blogs={Blogs} />} />
+          <Route path="/article/:id" element={<Blog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot_password" element={<ForgotPassword />} />
