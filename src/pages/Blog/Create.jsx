@@ -62,13 +62,9 @@ const Create = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post(
+      const articleResponse = await axios.post(
         "https://phreddy-blog.onrender.com/api/articles",
         {
-          thumbnail: {
-            title: "image",
-            imageUrl: "https://phreddy.netlify.app/assets/pic2-dzhwWmxr.jpg",
-          },
           author: "John Doe",
           title,
           content,
@@ -76,13 +72,40 @@ const Create = () => {
           overview,
         }
       );
-      if (response.status === 201) {
-        setSuccess(true);
+
+      if (articleResponse.status === 201) {
+        const articleId = articleResponse.data._id;
         setLoading(false);
+
+        await handleThumbnail(articleId);
       }
     } catch (error) {
       console.log(error);
       setLoading(false);
+    }
+  };
+
+  const handleThumbnail = async (articleId) => {
+    try {
+      const formData = new FormData();
+      formData.append("thumbnail", thumbnail);
+
+      const response = await axios.patch(
+        `https://phreddy-blog.onrender.com/api/articles/thumbnail/${articleId}`,
+        formData
+      );
+
+      if (response.status === 200) {
+        setSuccess(true);
+      }
+      setSuccess(false);
+    } catch (error) {
+      setLoading(false);
+      if (error.response) {
+        setError(error.response.data.message);
+      } else {
+        setError(error.message);
+      }
     }
   };
 
