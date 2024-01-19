@@ -40,7 +40,7 @@ function App() {
           <Route path="/terms_of_service" element={<Terms />} />
           <Route path="/create" element={<Create />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/details" element={<Details />} />
+          <Route path="/update_profile" element={<Details />} />
           <Route path="/categories/:category" element={<Categories />} />
         </Routes>
         <Footer />
