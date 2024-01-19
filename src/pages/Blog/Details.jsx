@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import axios from "axios";
 
 const Details = () => {
   const [avatar, setAvatar] = useState(null);
   const [about, setAbout] = useState("");
-  const [socialMedia, setSocialMedia] = useState("");
+  const [twitterUrl, setTwitterUrl] = useState("");
+  const [instagramUrl, setInstagramUrl] = useState("");
+  const [facebookUrl, setFacebookUrl] = useState("");
+  const [whatsappUrl, setWhatsappUrl] = useState("");
+  const [linkedinUrl, setLinkedinUrl] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
   const [occupation, setOccupation] = useState("");
-  const [contactDetails, setContactDetails] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
 
@@ -22,29 +27,21 @@ const Details = () => {
     }
   }, [user, navigate]);
 
-  // Function to get user id from cookies
-  const getUserIdFromCookies = () => {
-    // Replace 'userId' with the actual cookie name you use to store the user id
-    return Cookies.get("userId");
-  };
-
   // Handle avatar file change
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     setAvatar(file);
 
-    // If you want to display a preview of the selected image
-    // You can use the FileReader API to read the image and set it as a data URL
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        // Update the state with the data URL
         setAvatarPreview(e.target.result);
       };
       reader.readAsDataURL(file);
     }
   };
 
+  // Handle avatar upload
   const handleAvatar = async (userId) => {
     try {
       const formData = new FormData();
@@ -56,25 +53,45 @@ const Details = () => {
       );
 
       if (response.status === 200) {
+        console.log("Avatar addedd successfully");
+        setLoading(false);
+        setSuccess(true);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error("Avatar upload failed:", error);
+      setLoading(false);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({
-      avatar,
-      about,
-      socialMedia,
-      occupation,
-      contactDetails,
-    });
 
-    // Get user id from cookies
-    const userId = getUserIdFromCookies();
+    const userId = user._id;
 
-    // Call handleAvatar with the user id
-    await handleAvatar(userId);
+    try {
+      setLoading(true);
+      const response = await axios.patch(
+        `https://phreddy-blog.onrender.com/api/profile/create/${userId}`,
+        {
+          about,
+          twitterUrl,
+          instagramUrl,
+          facebookUrl,
+          whatsappUrl,
+          linkedinUrl,
+          youtubeUrl,
+          occupation,
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Profile updated successfully!");
+        handleAvatar();
+      }
+    } catch (error) {
+      console.error("Profile update failed:", error);
+      setLoading(false);
+    }
   };
 
   return (
@@ -86,7 +103,7 @@ const Details = () => {
         To create an article, first you will have to create your profile
       </p>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="shadow-md rounded-md p-4">
         <div className="mb-4">
           <label
             htmlFor="avatar"
@@ -99,10 +116,15 @@ const Details = () => {
             <input
               type="file"
               id="avatar"
+              required
               onChange={handleAvatarChange}
               className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
             />
-            {/* Preview */}
+          </div>
+          <p className="text-gray-500 text-sm">
+            Upload your avatar. Accepted formats: png, webp, avif, jpeg, or svg.
+          </p>
+          <div className="my-2 py-1 mx-4">
             {avatarPreview && (
               <img
                 src={avatarPreview}
@@ -111,9 +133,6 @@ const Details = () => {
               />
             )}
           </div>
-          <p className="text-gray-500 text-sm">
-            Upload your avatar. Accepted formats: png, webp, avif, jpeg, or svg.
-          </p>
         </div>
 
         <div className="mb-4">
@@ -126,8 +145,9 @@ const Details = () => {
           <textarea
             id="about"
             value={about}
+            required
             onChange={(e) => setAbout(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
           />
           <p className="text-gray-500 text-sm">
             Provide a brief description about yourself.
@@ -144,9 +164,9 @@ const Details = () => {
           <input
             type="text"
             id="socialMedia"
-            value={socialMedia}
-            onChange={(e) => setSocialMedia(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
+            value={twitterUrl}
+            onChange={(e) => setTwitterUrl(e.target.value)}
+            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
           />
         </div>
         <div className="mb-4">
@@ -159,9 +179,24 @@ const Details = () => {
           <input
             type="text"
             id="socialMedia"
-            value={socialMedia}
-            onChange={(e) => setSocialMedia(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
+            value={instagramUrl}
+            onChange={(e) => setInstagramUrl(e.target.value)}
+            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="socialMedia"
+            className="block text-gray-600 font-semibold mb-2"
+          >
+            Active WhatsApp Number:
+          </label>
+          <input
+            type="phone"
+            id="socialMedia"
+            value={whatsappUrl}
+            onChange={(e) => setWhatsappUrl(e.target.value)}
+            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
           />
         </div>
         <div className="mb-4">
@@ -174,9 +209,9 @@ const Details = () => {
           <input
             type="text"
             id="socialMedia"
-            value={socialMedia}
-            onChange={(e) => setSocialMedia(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
+            value={facebookUrl}
+            onChange={(e) => setFacebookUrl(e.target.value)}
+            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
           />
         </div>
         <div className="mb-4">
@@ -189,9 +224,9 @@ const Details = () => {
           <input
             type="text"
             id="socialMedia"
-            value={socialMedia}
-            onChange={(e) => setSocialMedia(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
+            value={linkedinUrl}
+            onChange={(e) => setLinkedinUrl(e.target.value)}
+            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
           />
         </div>
         <div className="mb-4">
@@ -204,9 +239,9 @@ const Details = () => {
           <input
             type="text"
             id="socialMedia"
-            value={socialMedia}
-            onChange={(e) => setSocialMedia(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
+            value={youtubeUrl}
+            onChange={(e) => setYoutubeUrl(e.target.value)}
+            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
           />
         </div>
 
@@ -220,31 +255,13 @@ const Details = () => {
           <input
             type="text"
             id="occupation"
+            required
             value={occupation}
             onChange={(e) => setOccupation(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
           />
           <p className="text-gray-500 text-sm">
             Specify your occupation or job title.
-          </p>
-        </div>
-
-        <div className="mb-4">
-          <label
-            htmlFor="contactDetails"
-            className="block text-gray-600 font-semibold mb-2"
-          >
-            Contact Details:
-          </label>
-          <input
-            type="text"
-            id="contactDetails"
-            value={contactDetails}
-            onChange={(e) => setContactDetails(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-          <p className="text-gray-500 text-sm">
-            Provide your contact details (phone number or physicall address).
           </p>
         </div>
 
@@ -253,9 +270,14 @@ const Details = () => {
             type="submit"
             className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
           >
-            Update Profile
+            {loading ? "Please Wait" : "Update Profile"}
           </button>
         </div>
+        {success && (
+          <div className="font-semibold text-green-600 text-center">
+            Profile Successfully updated
+          </div>
+        )}
       </form>
     </div>
   );
