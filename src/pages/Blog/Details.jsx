@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 const Details = () => {
   const [avatar, setAvatar] = useState(null);
@@ -8,6 +10,7 @@ const Details = () => {
   const [socialMedia, setSocialMedia] = useState("");
   const [occupation, setOccupation] = useState("");
   const [contactDetails, setContactDetails] = useState("");
+  const [avatarPreview, setAvatarPreview] = useState(null);
 
   const navigate = useNavigate();
 
@@ -18,6 +21,12 @@ const Details = () => {
       navigate("/login");
     }
   }, [user, navigate]);
+
+  // Function to get user id from cookies
+  const getUserIdFromCookies = () => {
+    // Replace 'userId' with the actual cookie name you use to store the user id
+    return Cookies.get("userId");
+  };
 
   // Handle avatar file change
   const handleAvatarChange = (e) => {
@@ -36,9 +45,22 @@ const Details = () => {
     }
   };
 
-  const [avatarPreview, setAvatarPreview] = useState(null);
+  const handleAvatar = async (userId) => {
+    try {
+      const formData = new FormData();
+      formData.append("avatar", avatar);
 
-  const handleSubmit = (e) => {
+      const response = await axios.patch(
+        `https://phreddy-blog.onrender.com/api/profile/avatar/${userId}`,
+        formData
+      );
+
+      if (response.status === 200) {
+      }
+    } catch (error) {}
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log({
       avatar,
@@ -47,6 +69,12 @@ const Details = () => {
       occupation,
       contactDetails,
     });
+
+    // Get user id from cookies
+    const userId = getUserIdFromCookies();
+
+    // Call handleAvatar with the user id
+    await handleAvatar(userId);
   };
 
   return (
