@@ -21,6 +21,8 @@ const Details = () => {
 
   const user = useSelector((state) => state.user.user);
 
+  const userId = user._id;
+
   useEffect(() => {
     if (!user) {
       navigate("/login");
@@ -42,7 +44,7 @@ const Details = () => {
   };
 
   // Handle avatar upload
-  const handleAvatar = async (userId) => {
+  const handleAvatar = async () => {
     try {
       const formData = new FormData();
       formData.append("avatar", avatar);
