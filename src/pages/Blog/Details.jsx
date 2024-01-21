@@ -6,6 +6,7 @@ import axios from "axios";
 const Details = () => {
   const [avatar, setAvatar] = useState(null);
   const [about, setAbout] = useState("");
+  const [location, setLocation] = useState("");
   const [twitterUrl, setTwitterUrl] = useState("");
   const [instagramUrl, setInstagramUrl] = useState("");
   const [facebookUrl, setFacebookUrl] = useState("");
@@ -265,6 +266,24 @@ const Details = () => {
           <p className="text-gray-500 text-sm">
             Specify your occupation or job title.
           </p>
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="location"
+            className="block text-gray-600 font-semibold mb-2"
+          >
+            Location:
+          </label>
+          <input
+            type="text"
+            id="location"
+            required
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
+          />
+          <p className="text-gray-500 text-sm">Where are you from.</p>
         </div>
 
         <div className="mt-4">
