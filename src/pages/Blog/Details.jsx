@@ -162,7 +162,7 @@ const Details = () => {
             htmlFor="socialMedia"
             className="block text-gray-600 font-semibold mb-2"
           >
-            Twitter profile URL:
+            Twitter profile URL (optional):
           </label>
           <input
             type="text"
@@ -177,7 +177,7 @@ const Details = () => {
             htmlFor="socialMedia"
             className="block text-gray-600 font-semibold mb-2"
           >
-            Instagram Profile URL:
+            Instagram Profile URL (optional):
           </label>
           <input
             type="text"
@@ -192,7 +192,7 @@ const Details = () => {
             htmlFor="socialMedia"
             className="block text-gray-600 font-semibold mb-2"
           >
-            Active WhatsApp Number:
+            Active WhatsApp Number (optional):
           </label>
           <input
             type="phone"
@@ -207,7 +207,7 @@ const Details = () => {
             htmlFor="socialMedia"
             className="block text-gray-600 font-semibold mb-2"
           >
-            Facebook Profile URL:
+            Facebook Profile URL (optional):
           </label>
           <input
             type="text"
@@ -222,7 +222,7 @@ const Details = () => {
             htmlFor="socialMedia"
             className="block text-gray-600 font-semibold mb-2"
           >
-            LinkedIn Profile URL:
+            LinkedIn Profile URL (optional):
           </label>
           <input
             type="text"
@@ -237,7 +237,7 @@ const Details = () => {
             htmlFor="socialMedia"
             className="block text-gray-600 font-semibold mb-2"
           >
-            YouTube Profile URL:
+            YouTube Profile URL (optional):
           </label>
           <input
             type="text"
