@@ -1,23 +1,44 @@
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
-  const user = useSelector((state) => state.user.user);
+  const [userdetails, setUserdetails] = useState(null);
+  const [userArticles, setUserArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const articles = [
-    {
-      id: 1,
-      title: "React Hooks Tutorial",
-      reads: 150,
-      category: "Programming",
-    },
-    {
-      id: 2,
-      title: "Introduction to Tailwind CSS",
-      reads: 120,
-      category: "Web Design",
-    },
-  ];
+  const user = useSelector((state) => state.user.user);
+  const user_id = user._id;
+
+  const getUserDetails = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/user/${user_id}`
+      );
+      setUserdetails(response.data);
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    }
+  };
+
+  const getUserArticles = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/user/articles/${user_id}`
+      );
+      setUserArticles(response.data);
+    } catch (error) {
+      console.error("Error fetching user articles:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getUserDetails();
+    getUserArticles();
+  }, []);
 
   return (
     <div className="container max-w-5xl mx-auto mt-24 p-4 lg:p-8 bg-white">
@@ -26,29 +47,35 @@ const Profile = () => {
 
         {/* User Information */}
         <div className="mb-4 lg:mb-8">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-4 lg:mb-6">
-            <h2 className="text-lg lg:text-xl font-semibold mb-2 lg:mb-0">
-              User Information
-            </h2>
-            <Link
-              to="/update_profile"
-              className="font-semibold hover:underline text-blue-700"
-            >
-              Update Profile
-            </Link>
-          </div>
-          <p className="mb-2">
-            <strong>Username:</strong> {user.username}
-          </p>
-          <p className="mb-2">
-            <strong>About:</strong> {user.about}
-          </p>
-          <p className="mb-2">
-            <strong>Email:</strong> {user.email}
-          </p>
-          <p>
-            <strong>Location:</strong> {user.location}
-          </p>
+          {userdetails && (
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-4 lg:mb-6">
+              <h2 className="text-lg lg:text-xl font-semibold mb-2 lg:mb-0">
+                User Information
+              </h2>
+              <Link
+                to="/update_profile"
+                className="font-semibold hover:underline text-blue-700"
+              >
+                Update Profile
+              </Link>
+            </div>
+          )}
+          {userdetails && (
+            <>
+              <p className="mb-2">
+                <strong>Username:</strong> {userdetails.username}
+              </p>
+              <p className="mb-2">
+                <strong>About:</strong> {userdetails.about}
+              </p>
+              <p className="mb-2">
+                <strong>Email:</strong> {userdetails.email}
+              </p>
+              <p>
+                <strong>Occupation:</strong> {userdetails.occupation}
+              </p>
+            </>
+          )}
         </div>
 
         {/* Articles Table */}
@@ -67,7 +94,7 @@ const Profile = () => {
                 </tr>
               </thead>
               <tbody>
-                {articles.map((article) => (
+                {userArticles.map((article) => (
                   <tr key={article.id}>
                     <td className="border p-2">{article.title}</td>
                     <td className="border p-2">{article.reads}</td>
