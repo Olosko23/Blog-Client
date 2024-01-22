@@ -71,7 +71,7 @@ const Articles = () => {
             "Healthcare",
             "Science",
             "Sports",
-            "Business & Commerce",
+            "Business",
             "Agriculture",
           ].map((category) => (
             <span

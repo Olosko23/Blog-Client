@@ -258,7 +258,7 @@ const Create = () => {
             modules={modules}
             formats={formats}
             style={{ height: "75vh" }}
-            className="border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
+            className="border  rounded "
           />
         </div>
 
