@@ -77,7 +77,6 @@ const Create = () => {
 
       if (articleResponse.status === 201) {
         const articleId = articleResponse.data._id;
-        setLoading(false);
 
         await handleThumbnail(articleId);
       }
@@ -99,8 +98,10 @@ const Create = () => {
 
       if (response.status === 200) {
         setSuccess(true);
+        setLoading(false);
       } else {
         setSuccess(false);
+        setLoading(false);
       }
     } catch (error) {
       setLoading(false);
