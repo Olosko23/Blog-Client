@@ -18,6 +18,8 @@ const Create = () => {
 
   const user = useSelector((state) => state.user.user);
 
+  const author_id = user._id;
+
   useEffect(() => {
     if (!user) {
       navigate("/login");
@@ -65,7 +67,7 @@ const Create = () => {
       const articleResponse = await axios.post(
         "https://phreddy-blog.onrender.com/api/articles",
         {
-          author: "John Doe",
+          author: author_id,
           title,
           content,
           category: selectedCategory,
@@ -97,8 +99,9 @@ const Create = () => {
 
       if (response.status === 200) {
         setSuccess(true);
+      } else {
+        setSuccess(false);
       }
-      setSuccess(false);
     } catch (error) {
       setLoading(false);
       if (error.response) {
@@ -106,6 +109,7 @@ const Create = () => {
       } else {
         setError(error.message);
       }
+      setSuccess(false);
     }
   };
 
@@ -150,27 +154,29 @@ const Create = () => {
           >
             Thumbnail Image:
           </label>
-          <div className="relative flex items-center">
-            <input
-              type="file"
-              id="thumbnail"
-              onChange={handleThumbnailChange}
-              className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
-            />
-            {thumbnailPreview && (
-              <div className="mt-4">
+          <div className="flex flex-col">
+            <div>
+              <input
+                type="file"
+                id="thumbnail"
+                onChange={handleThumbnailChange}
+                className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+            <p className="text-gray-500 text-sm mt-2">
+              Upload a thumbnail image for your article. Accepted formats: png,
+              webp, avif, jpeg, or svg.
+            </p>
+            <div className="py-1 mx-4">
+              {thumbnailPreview && (
                 <img
                   src={thumbnailPreview}
                   alt="Thumbnail Preview"
-                  className="w-16 h-16 object-cover rounded mt-2"
+                  className="mt-2 w-16 h-16 object-cover rounded"
                 />
-              </div>
-            )}
+              )}
+            </div>
           </div>
-          <p className="text-gray-500 text-sm mt-2">
-            Upload a thumbnail image for your article. Accepted formats: png,
-            webp, avif, jpeg, or svg.
-          </p>
         </div>
 
         <div className="mb-4">
@@ -255,14 +261,6 @@ const Create = () => {
           />
         </div>
 
-        <div className="mt-4">
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-2 mt-12 px-4 rounded hover:bg-blue-600"
-          >
-            {loading ? "Please Wait" : "Create Blog"}
-          </button>
-        </div>
         <div className="my-2">
           {error && <div className="text-red-500">{error}</div>}
         </div>
@@ -270,6 +268,15 @@ const Create = () => {
           {success && (
             <div className="text-green-500">Article Posted Sucessfully!</div>
           )}
+        </div>
+
+        <div className="mt-4">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white py-2 mt-12 px-4 rounded hover:bg-blue-600"
+          >
+            {loading ? "Please Wait" : "Create Blog"}
+          </button>
         </div>
       </form>
     </div>
