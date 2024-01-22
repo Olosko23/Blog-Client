@@ -156,11 +156,13 @@ const Articles = () => {
                 className="bg-white p-6 rounded-md shadow-md hover:scale-105 duration-300"
               >
                 <div>
-                  <img
-                    src={article.thumbnail.imageUrl}
-                    className="h-40 w-full object-cover rounded-md mb-4"
-                    alt="Article_Image"
-                  />
+                  {article.thumbnail && article.thumbnail.imageUrl && (
+                    <img
+                      src={article.thumbnail.imageUrl}
+                      className="h-40 w-full object-cover rounded-md mb-4"
+                      alt="Article_Image"
+                    />
+                  )}
                 </div>
                 <p className="text-blue-500 text-sm cursor-pointer">
                   {article.category}
@@ -172,13 +174,24 @@ const Articles = () => {
                   <p className="text-gray-600 mb-2">{article.overview}</p>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    className="h-9 w-9 rounded-full"
-                    alt="Author_Image"
-                  />
+                  {article.author_details &&
+                    article.author_details.avatar &&
+                    article.author_details.avatar.imageUrl && (
+                      <img
+                        src={article.author_details.avatar.imageUrl}
+                        className="h-9 w-9 rounded-full"
+                        alt="Author_Image"
+                      />
+                    )}
+
                   <div>
-                    <h3 className="font-semibold">{article.author}</h3>
+                    {article.author_details &&
+                      article.author_details.username && (
+                        <h3 className="font-semibold">
+                          {article.author_details.username}
+                        </h3>
+                      )}
+
                     <div className="text-sm text-gray-500 flex items-center">
                       <p>
                         {new Date(article.updatedAt).toLocaleString(undefined, {

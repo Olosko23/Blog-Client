@@ -67,7 +67,7 @@ const Create = () => {
       const articleResponse = await axios.post(
         "https://phreddy-blog.onrender.com/api/articles",
         {
-          author: author_id,
+          author_id,
           title,
           content,
           category: selectedCategory,
@@ -261,15 +261,6 @@ const Create = () => {
           />
         </div>
 
-        <div className="my-2">
-          {error && <div className="text-red-500">{error}</div>}
-        </div>
-        <div className="my-2">
-          {success && (
-            <div className="text-green-500">Article Posted Sucessfully!</div>
-          )}
-        </div>
-
         <div className="mt-4">
           <button
             type="submit"
@@ -277,6 +268,15 @@ const Create = () => {
           >
             {loading ? "Please Wait" : "Create Blog"}
           </button>
+        </div>
+
+        <div className="my-2">
+          {error && <div className="text-red-500">{error}</div>}
+        </div>
+        <div className="my-2">
+          {success && (
+            <div className="text-green-500">Article Posted Sucessfully!</div>
+          )}
         </div>
       </form>
     </div>
