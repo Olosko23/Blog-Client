@@ -14,7 +14,7 @@ const Profile = () => {
   const getUserDetails = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/user/${user_id}`
+        `https://phreddy-blog.onrender.com/api/user/${user_id}`
       );
       setUserdetails(response.data);
     } catch (error) {
@@ -25,7 +25,7 @@ const Profile = () => {
   const getUserArticles = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/user/articles/${user_id}`
+        `https://phreddy-blog.onrender.com/api/user/articles/${user_id}`
       );
       setUserArticles(response.data);
     } catch (error) {
