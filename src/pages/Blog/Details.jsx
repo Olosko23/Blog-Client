@@ -17,6 +17,7 @@ const Details = () => {
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -59,6 +60,7 @@ const Details = () => {
         console.log("Avatar addedd successfully");
         setLoading(false);
         setSuccess(true);
+        setMessage("Profile Saved Successfully!");
       }
     } catch (error) {
       console.error("Avatar upload failed:", error);
@@ -70,6 +72,7 @@ const Details = () => {
     e.preventDefault();
 
     const userId = user._id;
+    setMessage("");
 
     try {
       setLoading(true);
@@ -94,6 +97,27 @@ const Details = () => {
     } catch (error) {
       console.error("Profile update failed:", error);
       setLoading(false);
+    }
+  };
+
+  const handleVerify = async (e) => {
+    setMessage("");
+    try {
+      const response = await axios.patch(
+        `https://phreddy-blog.onrender.com/api/verify/${userId}`
+      );
+
+      if (response.status === 200) {
+        console.log("User verified successfully");
+        setMessage("User verified successfully!");
+        setSuccess(true);
+      } else {
+        console.error("User verification failed");
+        setMessage("User verification failed");
+      }
+    } catch (error) {
+      console.error("User verification failed:", error);
+      setMessage("User verification failed");
     }
   };
 
@@ -291,12 +315,20 @@ const Details = () => {
             type="submit"
             className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
           >
-            {loading ? "Please Wait" : "Update Profile"}
+            {loading ? "Please Wait" : "Save Profile"}
           </button>
         </div>
         {success && (
-          <div className="font-semibold text-green-600 text-center">
-            Profile Successfully updated
+          <div className="mt-4">
+            <p className="font-semibold text-green-600 text-center">
+              {message}
+            </p>
+            <button
+              onClick={handleVerify}
+              className="font-semibold text-green-600 text-center underline cursor-pointer"
+            >
+              Proceed
+            </button>
           </div>
         )}
       </form>
