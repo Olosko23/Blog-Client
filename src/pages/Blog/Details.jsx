@@ -109,22 +109,20 @@ const Details = () => {
 
       if (response.status === 200) {
         console.log("User verified successfully");
-        setMessage("User verified successfully!");
         setSuccess(true);
+        navigate("/profile");
       } else {
         console.error("User verification failed");
-        setMessage("User verification failed");
       }
     } catch (error) {
       console.error("User verification failed:", error);
-      setMessage("User verification failed");
     }
   };
 
   return (
     <div className="container mx-auto px-4 max-w-4xl py-12 mt-24">
       <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">
-        Update Your Profile
+        Create Your Profile
       </h1>
       <p className="text-gray-700 text-center">
         To create an article, first you will have to create your profile
@@ -319,7 +317,7 @@ const Details = () => {
           </button>
         </div>
         {success && (
-          <div className="mt-4">
+          <div className="mt-4 flex justify-center space-x-2">
             <p className="font-semibold text-green-600 text-center">
               {message}
             </p>

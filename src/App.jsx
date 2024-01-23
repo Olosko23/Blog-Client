@@ -18,6 +18,7 @@ import Details from "./pages/Blog/Details";
 import ScrollToTop from "./components/BackToTop";
 import Profile from "./pages/Auth/Profile";
 import Categories from "./pages/Blog/Categories";
+import UnverifiedUser from "./pages/Blog/UnverifiedUser";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/update_profile" element={<Details />} />
           <Route path="/categories/:category" element={<Categories />} />
+          <Route path="/unverified" element={<UnverifiedUser />} />
         </Routes>
         <Footer />
       </BrowserRouter>
