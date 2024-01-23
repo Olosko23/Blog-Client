@@ -8,7 +8,10 @@ const Profile = () => {
   const [userArticles, setUserArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const user = useSelector((state) => state.user.user);
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser) : null;
+
+  //const user = useSelector((state) => state.user.user);
   const user_id = user._id;
 
   const getUserDetails = async () => {
@@ -46,37 +49,44 @@ const Profile = () => {
         <h1 className="text-2xl lg:text-3xl font-semibold mb-4">Profile</h1>
 
         {/* User Information */}
-        <div className="mb-4 lg:mb-8">
-          {userdetails && (
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-4 lg:mb-6">
-              <h2 className="text-lg lg:text-xl font-semibold mb-2 lg:mb-0">
-                User Information
-              </h2>
-              <Link
-                to="/update_profile"
-                className="font-semibold hover:underline text-blue-700"
-              >
-                Update Profile
-              </Link>
-            </div>
-          )}
-          {userdetails && (
-            <>
-              <p className="mb-2">
-                <strong>Username:</strong> {userdetails.username}
-              </p>
-              <p className="mb-2">
-                <strong>About:</strong> {userdetails.about}
-              </p>
-              <p className="mb-2">
-                <strong>Email:</strong> {userdetails.email}
-              </p>
-              <p>
-                <strong>Occupation:</strong> {userdetails.occupation}
-              </p>
-            </>
-          )}
-        </div>
+        {loading ? (
+          <div className="flex w-full flex-col lg:flex-row justify-between items-start lg:items-center mb-4 lg:mb-6 animate-pulse">
+            <div className="bg-gray-300 h-4 w-20 mb-2 lg:mb-0"></div>
+            <div className="bg-gray-300 h-4 w-16"></div>
+          </div>
+        ) : (
+          <div className="mb-4 lg:mb-8">
+            {userdetails && (
+              <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-4 lg:mb-6">
+                <h2 className="text-lg lg:text-xl font-semibold mb-2 lg:mb-0">
+                  User Information
+                </h2>
+                <Link
+                  to="/update_profile"
+                  className="font-semibold hover:underline text-blue-700"
+                >
+                  Update Profile
+                </Link>
+              </div>
+            )}
+            {userdetails && (
+              <>
+                <p className="mb-2">
+                  <strong>Username:</strong> {userdetails.username}
+                </p>
+                <p className="mb-2">
+                  <strong>About:</strong> {userdetails.about}
+                </p>
+                <p className="mb-2">
+                  <strong>Email:</strong> {userdetails.email}
+                </p>
+                <p>
+                  <strong>Occupation:</strong> {userdetails.occupation}
+                </p>
+              </>
+            )}
+          </div>
+        )}
 
         {/* Articles Table */}
         <div>

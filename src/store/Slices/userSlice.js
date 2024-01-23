@@ -21,6 +21,7 @@ const userSlice = createSlice({
     removeUser: (state) => {
       state.user = null;
       Cookies.remove("user");
+      localStorage.removeItem("user");
     },
   },
 });

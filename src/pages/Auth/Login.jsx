@@ -46,6 +46,15 @@ const Login = () => {
       document.cookie = jwtCookie;
       const userData = response.data;
 
+      const userObject = {
+        email: userData.email,
+        username: userData.username,
+        isVerified: userData.isVerified,
+        _id: userData._id,
+      };
+
+      localStorage.setItem("user", JSON.stringify(userObject));
+
       dispatch(setUser(userData));
 
       navigate("/blogs");
