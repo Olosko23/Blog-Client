@@ -46,7 +46,7 @@ const Section1 = () => {
             Technology
           </span>
           <span className="cursor-pointer text-blue-500 hover:underline">
-            Healthcare
+            Healthcare & Medicine
           </span>
           <span className="cursor-pointer text-blue-500 hover:underline">
             Science
@@ -55,7 +55,13 @@ const Section1 = () => {
             Sports
           </span>
           <span className="cursor-pointer text-blue-500 hover:underline">
-            Finance, Business and Economics
+            Finance
+          </span>
+          <span className="cursor-pointer text-blue-500 hover:underline">
+            Business & Commerce
+          </span>
+          <span className="cursor-pointer text-blue-500 hover:underline">
+            Politics
           </span>
           <span className="cursor-pointer text-blue-500 hover:underline">
             Agriculture

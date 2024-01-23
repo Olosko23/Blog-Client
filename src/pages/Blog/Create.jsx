@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import UnverifiedUser from "./UnverifiedUser";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -19,12 +20,15 @@ const Create = () => {
   const user = useSelector((state) => state.user.user);
 
   const author_id = user._id;
+  const isVerified = user && user.isVerified;
 
   useEffect(() => {
     if (!user) {
       navigate("/login");
+    } else if (!isVerified) {
+      navigate("/unverified");
     }
-  }, [user, navigate]);
+  }, [user, navigate, isVerified]);
 
   const handleThumbnailChange = (e) => {
     const file = e.target.files[0];
@@ -142,145 +146,158 @@ const Create = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 max-w-4xl py-12 mt-24">
-      <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">
-        Create a New Article
-      </h1>
+    <>
+      {isVerified ? (
+        <div className="container mx-auto px-4 max-w-4xl py-12 mt-24">
+          <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">
+            Create a New Article
+          </h1>
 
-      <form onSubmit={handleSubmit} className="max-w-5xl mx-auto">
-        <div className="flex flex-col mb-4">
-          <label
-            htmlFor="thumbnail"
-            className="block text-gray-600 font-semibold mb-2"
-          >
-            Thumbnail Image:
-          </label>
-          <div className="flex flex-col">
-            <div>
+          <form onSubmit={handleSubmit} className="max-w-5xl mx-auto">
+            <div className="flex flex-col mb-4">
+              <label
+                htmlFor="thumbnail"
+                className="block text-gray-600 font-semibold mb-2"
+              >
+                Thumbnail Image:
+              </label>
+              <div className="flex flex-col">
+                <div>
+                  <input
+                    type="file"
+                    id="thumbnail"
+                    onChange={handleThumbnailChange}
+                    className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
+                  />
+                </div>
+                <p className="text-gray-500 text-sm mt-2">
+                  Upload a thumbnail image for your article. Accepted formats:
+                  png, webp, avif, jpeg, or svg.
+                </p>
+                <div className="py-1 mx-4">
+                  {thumbnailPreview && (
+                    <img
+                      src={thumbnailPreview}
+                      alt="Thumbnail Preview"
+                      className="mt-2 w-16 h-16 object-cover rounded"
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-4">
+              <label
+                htmlFor="title"
+                className="block text-gray-600 font-semibold mb-2 "
+              >
+                Title:
+              </label>
               <input
-                type="file"
-                id="thumbnail"
-                onChange={handleThumbnailChange}
+                type="text"
+                id="title"
+                value={title}
+                onChange={handleTitleChange}
                 className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
               />
+              <p className="text-gray-500 text-sm">
+                Enter the title of your article.
+              </p>
             </div>
-            <p className="text-gray-500 text-sm mt-2">
-              Upload a thumbnail image for your article. Accepted formats: png,
-              webp, avif, jpeg, or svg.
-            </p>
-            <div className="py-1 mx-4">
-              {thumbnailPreview && (
-                <img
-                  src={thumbnailPreview}
-                  alt="Thumbnail Preview"
-                  className="mt-2 w-16 h-16 object-cover rounded"
-                />
+
+            <div className="mb-4">
+              <label
+                htmlFor="overview"
+                className="block text-gray-600 font-semibold mb-2"
+              >
+                Overview:
+              </label>
+              <textarea
+                id="overview"
+                value={overview}
+                onChange={handleOverviewChange}
+                className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
+              />
+              <p className="text-gray-500 text-sm">
+                Provide a brief overview or summary of your article.
+              </p>
+            </div>
+
+            <div className="mb-4">
+              <label
+                htmlFor="tags"
+                className="block text-gray-600 font-semibold mb-2"
+              >
+                Category:
+              </label>
+              <select
+                value={selectedCategory}
+                onChange={handleTagsChange}
+                className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
+              >
+                <option value="" disabled>
+                  Select a Category
+                </option>
+                <option value="Technology">Technology</option>
+                <option value="Healthcare & Medicine">
+                  {" "}
+                  Healthcare & Medicine
+                </option>
+                <option value="Science">Science</option>
+                <option value="Sports">Sports</option>
+                <option value="Finance">Finance</option>
+                <option value="Business & Commerce">Business & Commerce</option>
+                <option value="Politics">Politics</option>
+                <option value="Agriculture">Agriculture</option>
+              </select>
+              <p className="text-gray-500 text-sm">
+                Which category does the article belong to (science, technology,
+                politics, business)?
+              </p>
+            </div>
+
+            <div className="mb-4">
+              <label
+                htmlFor="content"
+                className="block text-gray-600 font-semibold mb-2"
+              >
+                Content:
+              </label>
+              <ReactQuill
+                value={content}
+                onChange={handleContentChange}
+                modules={modules}
+                formats={formats}
+                style={{ height: "75vh" }}
+                className=""
+              />
+            </div>
+
+            <div className="mt-4">
+              <button
+                type="submit"
+                className="bg-blue-500 text-white py-2 mt-12 px-4 rounded hover:bg-blue-600"
+              >
+                {loading ? "Please Wait" : "Create Blog"}
+              </button>
+            </div>
+
+            <div className="my-2">
+              {error && <div className="text-red-500">{error}</div>}
+            </div>
+            <div className="my-2">
+              {success && (
+                <div className="text-green-500">
+                  Article Posted Successfully!
+                </div>
               )}
             </div>
-          </div>
+          </form>
         </div>
-
-        <div className="mb-4">
-          <label
-            htmlFor="title"
-            className="block text-gray-600 font-semibold mb-2 "
-          >
-            Title:
-          </label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={handleTitleChange}
-            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
-          />
-          <p className="text-gray-500 text-sm">
-            Enter the title of your article.
-          </p>
-        </div>
-
-        <div className="mb-4">
-          <label
-            htmlFor="overview"
-            className="block text-gray-600 font-semibold mb-2"
-          >
-            Overview:
-          </label>
-          <textarea
-            id="overview"
-            value={overview}
-            onChange={handleOverviewChange}
-            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
-          />
-          <p className="text-gray-500 text-sm">
-            Provide a brief overview or summary of your article.
-          </p>
-        </div>
-
-        <div className="mb-4">
-          <label
-            htmlFor="tags"
-            className="block text-gray-600 font-semibold mb-2"
-          >
-            Category:
-          </label>
-          <select
-            value={selectedCategory}
-            onChange={handleTagsChange}
-            className="w-full p-2 border border-blue-500 rounded focus:border-blue-500 focus:outline-none"
-          >
-            <option value="" disabled>
-              Select a Category
-            </option>
-            <option value="Business">Business</option>
-            <option value="Sports">Sports</option>
-            <option value="Agriculture">Agriculture</option>
-            <option value="Finance">Finance</option>
-            <option value="Technology">Technology</option>
-            <option value="Science">Science</option>
-          </select>
-          <p className="text-gray-500 text-sm">
-            Which category does the article belong to (science, technology,
-            politics, business)?
-          </p>
-        </div>
-
-        <div className="mb-4">
-          <label
-            htmlFor="content"
-            className="block text-gray-600 font-semibold mb-2"
-          >
-            Content:
-          </label>
-          <ReactQuill
-            value={content}
-            onChange={handleContentChange}
-            modules={modules}
-            formats={formats}
-            style={{ height: "75vh" }}
-            className="border  rounded "
-          />
-        </div>
-
-        <div className="mt-4">
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-2 mt-12 px-4 rounded hover:bg-blue-600"
-          >
-            {loading ? "Please Wait" : "Create Blog"}
-          </button>
-        </div>
-
-        <div className="my-2">
-          {error && <div className="text-red-500">{error}</div>}
-        </div>
-        <div className="my-2">
-          {success && (
-            <div className="text-green-500">Article Posted Sucessfully!</div>
-          )}
-        </div>
-      </form>
-    </div>
+      ) : (
+        <UnverifiedUser />
+      )}
+    </>
   );
 };
 

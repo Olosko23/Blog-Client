@@ -68,10 +68,12 @@ const Articles = () => {
           {[
             "All",
             "Technology",
-            "Healthcare",
+            "Healthcare & Medicine",
             "Science",
             "Sports",
-            "Business",
+            "Finance",
+            "Business & Commerce",
+            "Politics",
             "Agriculture",
           ].map((category) => (
             <span
