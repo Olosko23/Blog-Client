@@ -50,7 +50,7 @@ const Profile = () => {
 
         {/* User Information */}
         {loading ? (
-          <div className="flex w-full flex-col lg:flex-row justify-between items-start lg:items-center mb-4 lg:mb-6 animate-pulse">
+          <div className="h-[75dvh] flex w-full flex-col lg:flex-row justify-between items-start lg:items-center mb-4 lg:mb-6 animate-pulse">
             <div className="bg-gray-300 h-4 w-20 mb-2 lg:mb-0"></div>
             <div className="bg-gray-300 h-4 w-16"></div>
           </div>
