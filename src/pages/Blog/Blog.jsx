@@ -57,7 +57,7 @@ const Blog = () => {
           </section>
 
           <section className="mt-8">
-            <article className="bg-white p-6 rounded-md shadow-md">
+            <article className="bg-white p-6 md:rounded-md md:shadow-md">
               <div>
                 <img
                   src={article.thumbnail?.imageUrl || "fallback_image_url"}

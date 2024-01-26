@@ -7,12 +7,11 @@ import { Link } from "react-router-dom";
 
 const Related = ({ articleId, currentCategory }) => {
   const [relatedArticles, setRelatedArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRelatedArticles = async () => {
       try {
-        setLoading(true);
         const response = await axios.get(
           `https://phreddy-blog.onrender.com/api/articles`
         );
@@ -42,29 +41,42 @@ const Related = ({ articleId, currentCategory }) => {
   };
 
   return (
-    <div className="mx-auto max-w-4xl py-12 mt-8">
-      <h2 className="text-2xl font-bold mb-4 text-center">You may also like</h2>
-      {loading ? (
-        <p>Loading related articles...</p>
-      ) : (
-        <Slider {...settings} className="slick-carousel px-4">
-          {relatedArticles.map((article) => (
-            <Link to={`/article/${article._id}`} key={article._id}>
-              <div className="bg-white p-4 rounded-md shadow-md">
-                <img
-                  src={article.thumbnail?.imageUrl || "fallback_image_url"}
-                  className="h-20 w-full object-contain rounded-md mb-2"
-                  alt="Article_Image"
-                />
-                <h3 className="text-lg font-semibold mb-2 text-center">
-                  {article.title}
-                </h3>
+    <>
+      {relatedArticles.length > 0 && (
+        <div className="mx-auto max-w-4xl py-12 mt-2 md:mt-8">
+          <h2 className="text-2xl font-bold mb-4 text-center">
+            You may also like
+          </h2>
+
+          {loading ? (
+            Array.from({ length: 3 }).map((_, index) => (
+              <div key={index} className="animate-pulse">
+                <div className="bg-gray-300 h-20 w-full rounded-md mb-2"></div>
+                <div className="bg-gray-300 h-8 w-full mb-2"></div>
+                <div className="bg-gray-300 h-8 w-full mb-2"></div>
               </div>
-            </Link>
-          ))}
-        </Slider>
+            ))
+          ) : (
+            <Slider {...settings} className="slick-carousel px-4">
+              {relatedArticles.map((article) => (
+                <Link to={`/article/${article._id}`} key={article._id}>
+                  <div className="bg-white p-4 rounded-md shadow-md">
+                    <img
+                      src={article.thumbnail?.imageUrl || "fallback_image_url"}
+                      className="h-20 w-full object-contain rounded-md mb-2"
+                      alt="Article_Image"
+                    />
+                    <h3 className="text-lg font-semibold mb-2 text-center">
+                      {article.title}
+                    </h3>
+                  </div>
+                </Link>
+              ))}
+            </Slider>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
