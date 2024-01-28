@@ -1,5 +1,5 @@
 
-# Phreddy Website Documentation
+# Blogging Website Documentation
 
 <hr />
 https://phreddy.netlify.app/
