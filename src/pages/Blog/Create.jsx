@@ -17,10 +17,8 @@ const Create = () => {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
-  //const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.user);
 
-  const storedUser = localStorage.getItem("user");
-  const user = storedUser ? JSON.parse(storedUser) : null;
   const author_id = user ? user._id : null;
   const isVerified = user ? user.isVerified : false;
 

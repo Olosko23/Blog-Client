@@ -35,14 +35,14 @@ const Blog = () => {
         <div className="container mx-auto px-4 max-w-4xl py-12 mt-24 h-[85vh]">
           <div className="animate-pulse space-y-4">
             <div className="bg-gray-300 h-60 w-full object-cover rounded-md mb-4"></div>
-            <div className="bg-gray-300 h-8 w-1/4 mb-2"></div>
-            <div className="bg-gray-300 h-8 w-1/2 mb-2"></div>
-            <div className="bg-gray-300 h-8 w-1/4 mb-2"></div>
+            <div className="bg-gray-300 h-4 w-1/4 mb-2"></div>
+            <div className="bg-gray-300 h-4 w-1/2 mb-2"></div>
+            <div className="bg-gray-300 h-4 w-1/4 mb-2"></div>
             <div className="flex items-center space-x-4">
-              <div className="bg-gray-300 h-9 w-9 rounded-full"></div>
+              <div className="bg-gray-300 h-7 w-9 rounded-full"></div>
               <div className="space-y-2">
-                <div className="bg-gray-300 h-4 w-20 mb-1"></div>
-                <div className="bg-gray-300 h-4 w-16"></div>
+                <div className="bg-gray-300 h-2 w-20 mb-1"></div>
+                <div className="bg-gray-300 h-2 w-16"></div>
               </div>
             </div>
           </div>

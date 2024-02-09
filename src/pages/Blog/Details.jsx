@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { setIsVerified } from "../../store/Slices/userSlice";
 
 const Details = () => {
   const [avatar, setAvatar] = useState(null);
@@ -100,6 +101,8 @@ const Details = () => {
     }
   };
 
+  const dispatch = useDispatch();
+
   const handleVerify = async (e) => {
     setMessage("");
     try {
@@ -108,8 +111,7 @@ const Details = () => {
       );
 
       if (response.status === 200) {
-        console.log("User verified successfully");
-        setSuccess(true);
+        dispatch(setIsVerified());
         navigate("/profile");
       } else {
         console.error("User verification failed");
@@ -317,16 +319,18 @@ const Details = () => {
           </button>
         </div>
         {success && (
-          <div className="mt-4 flex justify-center space-x-2">
-            <p className="font-semibold text-green-600 text-center">
-              {message}
-            </p>
-            <button
-              onClick={handleVerify}
-              className="font-semibold text-green-600 text-center underline cursor-pointer"
-            >
-              Proceed
-            </button>
+          <div
+            onClick={handleVerify}
+            className="mt-4 flex justify-center space-x-2"
+          >
+            <span className="flex space-x-1 items-center justify-center">
+              <p className="font-semibold text-green-600 text-center">
+                {message}
+              </p>
+              <button className="font-semibold text-green-600 text-center underline cursor-pointer">
+                Proceed
+              </button>
+            </span>
           </div>
         )}
       </form>
