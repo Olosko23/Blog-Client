@@ -27,37 +27,4 @@
   background-color: #011650;
 }
 
-/* Add this CSS to your stylesheets */
-/* Adjust margins as per your design requirements */
-
-.slick-prev,
-.slick-next {
-  width: 50px; /* Set width as desired */
-  height: 50px; /* Set height as desired */
-  background-color: #3498db; /* Set blue color */
-  border-radius: 50%; /* Make it circular */
-  z-index: 1; /* Ensure it's above the slider */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.slick-prev:hover,
-.slick-next:hover {
-  background-color: #5fa8d3;
-}
-
-.slick-prev {
-  left: 20px;
-}
-
-.slick-next {
-  right: 20px;
-}
-
 
