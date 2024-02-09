@@ -58,8 +58,6 @@ const Login = () => {
       dispatch(setUser(userData));
 
       navigate("/blogs");
-
-      console.log("Login successfull");
     } catch (error) {
       if (error.response) {
         setError(error.response.data.error);

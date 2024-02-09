@@ -11,7 +11,6 @@ const Profile = () => {
   const storedUser = localStorage.getItem("user");
   const user = storedUser ? JSON.parse(storedUser) : null;
 
-  //const user = useSelector((state) => state.user.user);
   const user_id = user._id;
 
   const getUserDetails = async () => {
@@ -50,9 +49,9 @@ const Profile = () => {
 
         {/* User Information */}
         {loading ? (
-          <div className="flex w-full flex-col lg:flex-row justify-between items-start lg:items-center mb-4 lg:mb-6 animate-pulse">
-            <div className="bg-gray-300 h-4 w-20 mb-2 lg:mb-0"></div>
-            <div className="bg-gray-300 h-4 w-16"></div>
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-4 lg:mb-6 animate-pulse">
+            <div className="bg-gray-300 h-4 w-40 lg:w-48 mb-2 lg:mb-0"></div>
+            <div className="bg-gray-300 h-4 w-24 lg:w-32"></div>
           </div>
         ) : (
           <div className="mb-4 lg:mb-8">
@@ -88,36 +87,44 @@ const Profile = () => {
           </div>
         )}
 
-        {/* Articles Table */}
-        <div>
+        <div className="w-full">
           <h2 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6">
             Your Articles
           </h2>
-          <div className="">
-            <table className="w-full lg:w-auto border border-collapse">
-              <thead>
-                <tr className="bg-gray-200">
-                  <th className="border p-2">Title</th>
-                  <th className="border p-2">Reads</th>
-                  <th className="border p-2">Category</th>
-                  <th className="border p-2">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {userArticles.map((article) => (
-                  <tr key={article.id}>
-                    <td className="border p-2">{article.title}</td>
-                    <td className="border p-2">{article.reads}</td>
-                    <td className="border p-2">{article.category}</td>
-                    <td className="border p-2">
-                      <button className="mr-2 text-blue-500">Edit</button>
-                      <button className="text-red-500">Delete</button>
-                    </td>
+          {userArticles.length === 0 ? (
+            <Link
+              to="/create"
+              className="text-blue-500 font-semibold"
+            >
+              Create Articles
+            </Link>
+          ) : (
+            <div className="">
+              <table className="w-full lg:w-auto border border-collapse">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="border p-2">Title</th>
+                    <th className="border p-2">Reads</th>
+                    <th className="border p-2">Category</th>
+                    <th className="border p-2">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {userArticles.map((article) => (
+                    <tr key={article.id}>
+                      <td className="border p-2">{article.title}</td>
+                      <td className="border p-2">{article.reads}</td>
+                      <td className="border p-2">{article.category}</td>
+                      <td className="border p-2">
+                        <button className="mr-2 text-blue-500">Edit</button>
+                        <button className="text-red-500">Delete</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       </div>
     </div>

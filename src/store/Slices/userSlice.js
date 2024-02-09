@@ -23,9 +23,13 @@ const userSlice = createSlice({
       Cookies.remove("user");
       localStorage.removeItem("user");
     },
+    setIsVerified: (state) => {
+      state.user.isVerified = true;
+      Cookies.set("user", JSON.stringify(state.user), { expires: 7 });
+    },
   },
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser, removeUser, setIsVerified } = userSlice.actions;
 
 export default userSlice.reducer;

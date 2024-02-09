@@ -30,30 +30,31 @@ const Footer = () => {
       <div className="flex justify-center text-center mt-4 px-4">
         {/* Copyright Disclaimer */}
         <p className="text-sm">
-          &copy; {currentYear} Phreddy. All rights reserved. |{" "}
+          &copy; {currentYear} Phreddy. All rights reserved.{" "}
+          <span className="mx-1">•</span>
           <Link to="/privacy_policy" className="text-blue-500 hover:underline">
             Privacy Policy
           </Link>{" "}
-          |{" "}
+          <span className="mx-1">•</span>
           <Link
             to="/terms_of_service"
             className="text-blue-500 hover:underline"
           >
             Terms of Service
           </Link>{" "}
-          |{" "}
+          <span className="mx-1">•</span>
           {user && (
             <>
               <Link to="/blogs" className="text-blue-500 hover:underline">
                 Blogs
               </Link>{" "}
-              |{" "}
+              <span className="mx-1">•</span>
               <Link to="/about" className="text-blue-500 hover:underline">
                 About Us
               </Link>{" "}
-              |{" "}
+              <span className="mx-1">•</span>
               <Link to="/contact" className="text-blue-500 hover:underline">
-                Contact US
+                Contact Us
               </Link>
             </>
           )}
