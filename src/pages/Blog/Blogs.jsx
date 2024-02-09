@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Articles = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -8,6 +9,9 @@ const Articles = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [loading, setLoading] = useState(false);
   const articlesPerPage = 6;
+
+  const user = useSelector((state) => state.user.user);
+  const username = user ? user.username : null;
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -55,9 +59,16 @@ const Articles = () => {
   return (
     <div className="container mx-auto px-4 md:px-8 max-w-7xl py-12 mt-24">
       <section className="text-center">
-        <h1 className="text-4xl font-bold mb-8 text-gray-800">
-          Explore Our Articles
-        </h1>
+        {username ? (
+          <h1 className="text-4xl font-bold mb-8 text-gray-800">
+            <span>Hello {username}, </span>Explore Our Articles
+          </h1>
+        ) : (
+          <h1 className="text-4xl font-bold mb-8 text-gray-800">
+            <span>Hello, </span>Explore Our Articles
+          </h1>
+        )}
+
         <p className="text-gray-600">
           Discover a variety of articles on different topics
         </p>

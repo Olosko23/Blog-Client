@@ -4,6 +4,14 @@ import { IoMdClose } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../store/Slices/userSlice";
+import {
+  MdCreate,
+  MdLogout,
+  MdOutlineContactPhone,
+  MdOutlineLibraryBooks,
+  MdPeople,
+} from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -56,13 +64,37 @@ const Navbar = () => {
           {!user && (
             <div className="md:flex justify-evenly space-x-4 hidden">
               <div className="cursor-pointer hover:text-blue-800 font-semibold text-lg">
-                <Link to="/blogs">Blog</Link>
+                <Link to="/blogs">
+                  {" "}
+                  <span className="flex justify-start space-x-1">
+                    <span className="grid place-items-center">
+                      <MdOutlineLibraryBooks size={20} />
+                    </span>
+                    <span>Blogs</span>
+                  </span>
+                </Link>
               </div>
               <div className="cursor-pointer hover:text-blue-800 font-semibold text-lg">
-                <Link to="/about">About Us</Link>
+                <Link to="/about">
+                  {" "}
+                  <span className="flex justify-start space-x-3">
+                    <span className="grid place-items-center">
+                      <MdPeople size={20} />
+                    </span>
+                    <span>About Us</span>
+                  </span>
+                </Link>
               </div>
               <div className="cursor-pointer hover:text-blue-800 font-semibold text-lg">
-                <Link to="/contact">Contact</Link>
+                <Link to="/contact">
+                  {" "}
+                  <span className="flex justify-start space-x-3">
+                    <span className="grid place-items-center">
+                      <MdOutlineContactPhone size={20} />
+                    </span>
+                    <span>Contact</span>
+                  </span>
+                </Link>
               </div>
             </div>
           )}
@@ -71,10 +103,25 @@ const Navbar = () => {
             {user ? (
               <div className="flex justify-center space-x-3">
                 <div className="cursor-pointer hover:text-blue-800 font-semibold text-lg">
-                  <Link to="/create">Create</Link>
+                  <Link to="/create">
+                    <span className="flex justify-start space-x-1">
+                      <span className="grid place-items-center">
+                        <MdCreate size={20} />
+                      </span>
+                      <span>Create</span>
+                    </span>
+                  </Link>
                 </div>
                 <div className="cursor-pointer hover:text-blue-800 font-semibold text-lg">
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/profile">
+                    {" "}
+                    <span className="flex justify-start space-x-1">
+                      <span className="grid place-items-center">
+                        <FaUserCircle size={20} />
+                      </span>
+                      <span>Profile</span>
+                    </span>
+                  </Link>
                 </div>
                 <div
                   className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-semibold text-md rounded-md py-1 px-2"
@@ -103,33 +150,78 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="fixed top-16 left-0 w-full z-30">
           <div
-            className="w-full bg-blue-500 text-white px-6 py-4"
+            className="w-full bg-white text-blue-700 px-6 py-4"
             onClick={closeMobileMenu}
           >
             <div className="cursor-pointer hover:text-gray-300 mb-2">
-              <Link to="/about">About Us</Link>
-            </div>
-            <div className="cursor-pointer hover:text-gray-300 mb-2">
               {" "}
-              <Link to="/blogs">Blog</Link>
+              <Link to="/blogs">
+                {" "}
+                <span className="flex justify-start space-x-3">
+                  <span className="grid place-items-center">
+                    <MdOutlineLibraryBooks size={20} />
+                  </span>
+                  <span>Blogs</span>
+                </span>
+              </Link>
             </div>
             <div className="cursor-pointer hover:text-gray-300 mb-2">
-              <Link to="/contact">Contact</Link>
+              <Link to="/about">
+                {" "}
+                <span className="flex justify-start space-x-3">
+                  <span className="grid place-items-center">
+                    <MdPeople size={20} />
+                  </span>
+                  <span>About Us</span>
+                </span>
+              </Link>
+            </div>
+            <div className="cursor-pointer hover:text-gray-300 mb-2">
+              <Link to="/contact">
+                {" "}
+                <span className="flex justify-start space-x-3">
+                  <span className="grid place-items-center">
+                    <MdOutlineContactPhone size={20} />
+                  </span>
+                  <span>Contact</span>
+                </span>
+              </Link>
             </div>
             <div className="cursor-pointer hover:text-gray-300 mb-2">
               {user ? (
                 <div>
                   <div className="cursor-pointer  mb-2">
-                    <Link to="/create">Create</Link>
+                    <Link to="/create">
+                      {" "}
+                      <span className="flex justify-start space-x-3">
+                        <span className="grid place-items-center">
+                          <MdCreate size={20} />
+                        </span>
+                        <span>Create</span>
+                      </span>
+                    </Link>
                   </div>
                   <div className="cursor-pointer  mb-2">
-                    <Link to="/profile">Profile</Link>
+                    <Link to="/profile">
+                      {" "}
+                      <span className="flex justify-start space-x-3">
+                        <span className="grid place-items-center">
+                          <FaUserCircle size={20} />
+                        </span>
+                        <span>Profile</span>
+                      </span>
+                    </Link>
                   </div>
                   <div
                     className="cursor-pointer underline  mb-2"
                     onClick={handleLogout}
                   >
-                    Logout
+                    <span className="flex justify-start space-x-3">
+                      <span className="grid place-items-center">
+                        <MdLogout size={20} />
+                      </span>
+                      <span>Logout</span>
+                    </span>
                   </div>
                 </div>
               ) : (
