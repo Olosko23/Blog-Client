@@ -61,9 +61,3 @@
 }
 
 
-@media (max-width: 767px) {
-  #Hero_ {
-    background-image: none; /* Remove background image */
-    background-color: #3b82f6; /* Apply gradient background color */
-  }
-}

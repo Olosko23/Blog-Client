@@ -1,15 +1,25 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Bg from "../../assets/four.jpg";
 
 const Hero = () => {
   const user = useSelector((state) => state.user.user);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = Bg;
+    img.onload = () => {
+      setLoaded(true);
+    };
+  }, []);
 
   return (
     <div
       id="Hero_"
       className="h-[75vh] bg-gradient-to-b from-blue-500 to-blue-700 text-gray-100 flex flex-col justify-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${Bg})` }}
+      style={{ backgroundImage: `url(${loaded ? Bg : ""})` }}
     >
       <div className="text-center mx-auto max-w-7xl">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
@@ -18,7 +28,7 @@ const Hero = () => {
           </span>
         </h1>
 
-        <p className="text-lg mb-6">
+        <p className="text-lg mb-6 text-gray-50">
           Stay informed with insightful articles written by experts in various
           fields
         </p>
