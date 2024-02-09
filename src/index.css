@@ -44,18 +44,26 @@
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Add transition for smoother hover effect */
+  transition: background-color 0.3s ease;
 }
 
 .slick-prev:hover,
 .slick-next:hover {
-  background-color: #5fa8d3; /* Set lighter shade of blue on hover */
+  background-color: #5fa8d3;
 }
 
 .slick-prev {
-  left: 20px; /* Adjust left margin */
+  left: 20px;
 }
 
 .slick-next {
-  right: 20px; /* Adjust right margin */
+  right: 20px;
+}
+
+
+@media (max-width: 767px) {
+  #Hero_ {
+    background-image: none; /* Remove background image */
+    background-color: #3b82f6; /* Apply gradient background color */
+  }
 }

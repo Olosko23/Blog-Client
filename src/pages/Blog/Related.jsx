@@ -57,7 +57,11 @@ const Related = ({ articleId, currentCategory }) => {
               </div>
             ))
           ) : (
-            <Slider {...settings} className="slick-carousel px-4">
+            <Slider
+              {...settings}
+              id="slick_carousel"
+              className="slick-carousel px-4"
+            >
               {relatedArticles.map((article) => (
                 <Link to={`/article/${article._id}`} key={article._id}>
                   <div className="bg-white p-4 rounded-md shadow-md">
