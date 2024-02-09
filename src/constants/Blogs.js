@@ -13,7 +13,7 @@ export const blogs = [
     category: "Science",
     title: "Exploring the Mysteries of Quantum Physics",
     overview:
-      "Dive into the fascinating world of quantum physics and unravel the mysteries that govern the behavior of the smallest particles in the universe.",
+      "Dive into the fascinating realm of quantum physics and unravel the mysteries that govern the behavior of the smallest particles in the universe.",
     author_img_src: Pic4,
     author_name: "John Doe",
     date: "15 Jan 2024",
