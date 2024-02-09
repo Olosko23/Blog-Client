@@ -1,14 +1,23 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Bg from "../../assets/four.jpg";
+
 const Hero = () => {
   const user = useSelector((state) => state.user.user);
 
   return (
-    <div className="h-[75vh] bg-gradient-to-b from-blue-500 to-blue-700 text-white flex flex-col justify-center">
+    <div
+      id="Hero_"
+      className="h-[75vh] bg-gradient-to-b from-blue-500 to-blue-700 text-gray-100 flex flex-col justify-center bg-cover bg-center"
+      style={{ backgroundImage: `url(${Bg})` }}
+    >
       <div className="text-center mx-auto max-w-7xl">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-          Discover the Latest Articles on our Blog
+          <span className="bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 text-transparent bg-clip-text">
+            Discover the Latest Articles on our Blog
+          </span>
         </h1>
+
         <p className="text-lg mb-6">
           Stay informed with insightful articles written by experts in various
           fields
