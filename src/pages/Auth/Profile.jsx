@@ -49,9 +49,8 @@ const Profile = () => {
 
         {/* User Information */}
         {loading ? (
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-4 lg:mb-6 animate-pulse">
-            <div className="bg-gray-300 h-4 w-40 lg:w-48 mb-2 lg:mb-0"></div>
-            <div className="bg-gray-300 h-4 w-24 lg:w-32"></div>
+          <div className="flex flex-col lg:flex-row justify-center items-center mb-4 lg:mb-6 animate-pulse">
+            <div className="h-24 w-24 lg:h-32 lg:w-32 border-gray-300 border-8 border-t-8 border-t-blue-600 rounded-full animate-spin" />
           </div>
         ) : (
           <div className="mb-4 lg:mb-8">
@@ -88,13 +87,13 @@ const Profile = () => {
         )}
 
         <div className="w-full">
-          <h2 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6">
+          <h2 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6 text-center text-blue-600">
             Your Articles
           </h2>
           {userArticles.length === 0 ? (
             <Link
               to="/create"
-              className="text-blue-500 font-semibold"
+              className="text-blue-500 font-semibold text-center"
             >
               Create Articles
             </Link>

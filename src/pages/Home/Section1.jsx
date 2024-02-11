@@ -128,6 +128,25 @@ const Section1 = () => {
                 </div>
               </div>
             </Link>
+            <Link className="bg-white p-6 rounded-md shadow-md animate-pulse">
+              <div className="h-40 w-full object-cover rounded-md mb-4 bg-gray-300"></div>
+              <p className="text-blue-500 text-sm cursor-pointer bg-gray-200 h-4 w-16 rounded-md mb-2"></p>
+              <h2 className="text-xl font-semibold mb-2 cursor-pointer hover:text-gray-600 bg-gray-200 h-6 w-3/4 rounded-md"></h2>
+              <div className="mb-4">
+                <p className="text-gray-600 mb-2 bg-gray-200 h-4 w-full rounded-md"></p>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="h-9 w-9 rounded-full bg-gray-300"></div>
+                <div>
+                  <h3 className="font-semibold bg-gray-200 h-4 w-20 rounded-md"></h3>
+                  <div className="text-sm text-gray-500 flex items-center">
+                    <p className="bg-gray-200 h-4 w-16 rounded-md"></p>
+                    <span className="mx-1">•</span> {/* Divider */}
+                    <p className="bg-gray-200 h-4 w-12 rounded-md"></p>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-2">
