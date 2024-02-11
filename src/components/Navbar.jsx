@@ -148,9 +148,9 @@ const Navbar = () => {
 
       {/* Mobile Screen */}
       {isMobileMenuOpen && (
-        <div className="fixed top-16 left-0 w-full z-30">
+        <div className="fixed top-16 left-0 w-full z-30 bg-gray-100">
           <div
-            className="w-full bg-white text-blue-700 px-6 py-4"
+            className="w-full text-blue-700 px-6 py-4"
             onClick={closeMobileMenu}
           >
             <div className="cursor-pointer hover:text-gray-300 mb-2">
