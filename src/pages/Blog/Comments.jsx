@@ -38,6 +38,7 @@ const Comments = ({ comments, articleId }) => {
         { author_id, author_Image, author_username, content }
       );
       setNewComment("");
+      setLoading(false);
     } catch (error) {
       setError(error);
       setLoading(false);
