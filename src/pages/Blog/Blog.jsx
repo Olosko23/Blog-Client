@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-//import Comments from "./Comments";
+import Comments from "./Comments";
 import Related from "./Related";
 
 const Blog = () => {
@@ -112,8 +112,8 @@ const Blog = () => {
           </section>
         </div>
       )}
-      <div className="">
-        {/*<Comments articleId={article._id} /> */}
+      <div className="flex flex-col">
+        <Comments comments={article.comments || []} articleId={article._id} />
         <Related articleId={article._id} currentCategory={article.category} />
       </div>
     </>
