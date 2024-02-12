@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Comments from "./Comments";
-import Related from "./Related";
+import Related from "./Related2";
 
 const Blog = () => {
   const { id } = useParams();
