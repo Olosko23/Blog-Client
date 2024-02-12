@@ -47,7 +47,7 @@ const Comments = ({ comments, articleId }) => {
 
   return (
     <div className="mt-8 w-full max-w-4xl mx-auto px-4 sm:px-6 py-2">
-      <h2 className="text-xl ml-4 mb-4 flex space-x-2 text-blue-600 font-bold">
+      <h2 className="text-xl ml-6 mb-4 flex space-x-2 text-blue-600 font-bold">
         <span className="grid place-items-center">
           <FaCommentDots size={20} />
         </span>
