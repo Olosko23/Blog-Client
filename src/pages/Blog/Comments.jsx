@@ -54,7 +54,7 @@ const Comments = ({ comments, articleId }) => {
         <span className="grid place-items-center">Comments</span>
       </h2>
       {comments.length === 0 ? (
-        <p className="text-gray-600 italic my-2 p-1">
+        <p className="text-gray-600 italic my-2 p-1 px-3">
           No comments here. Be the first to comment.
         </p>
       ) : (
@@ -86,7 +86,7 @@ const Comments = ({ comments, articleId }) => {
         </>
       )}
       {!user && (
-        <div className="text-center my-3 font-semibold text-blue-600">
+        <div className="text-center my-3 font-semibold text-blue-600 px-3">
           <Link to="/login">Login or signup to add comments</Link>
         </div>
       )}
