@@ -13,7 +13,7 @@ const Hero = () => {
     >
       <div className="text-center mx-auto max-w-7xl">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-          <span className="bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 text-transparent bg-clip-text">
+          <span className="bg-gradient-to-r from-blue-700 via-blue-500 to-blue-300 text-transparent bg-clip-text">
             Discover the Latest Articles on our Blog
           </span>
         </h1>
