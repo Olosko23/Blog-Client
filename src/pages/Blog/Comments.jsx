@@ -53,6 +53,7 @@ const Comments = ({ comments, articleId }) => {
         { author_id, author_Image, author_username, content }
       );
       setNewComment("");
+      setLoading(false);
     } catch (error) {
       setError(error);
       setLoading(false);
@@ -69,6 +70,7 @@ const Comments = ({ comments, articleId }) => {
       </h2>
       {comments.length === 0 ? (
         <p className="text-gray-600 text-center italic my-2 p-1">
+
           No comments here. Be the first to comment.
         </p>
       ) : (
@@ -101,7 +103,7 @@ const Comments = ({ comments, articleId }) => {
         </div>
       )}
       {!user && (
-        <div className="text-center my-3 font-semibold text-blue-600">
+        <div className="text-center my-3 font-semibold text-blue-600 px-3">
           <Link to="/login">Login or signup to add comments</Link>
         </div>
       )}
