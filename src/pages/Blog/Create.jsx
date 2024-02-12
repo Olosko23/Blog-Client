@@ -103,6 +103,9 @@ const Create = () => {
       if (response.status === 200) {
         setSuccess(true);
         setLoading(false);
+        setTimeout(() => {
+          navigate(`/article/${articleId}`);
+        }, 2000);
       } else {
         setSuccess(false);
         setLoading(false);

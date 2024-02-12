@@ -110,8 +110,12 @@ const Profile = () => {
                 </thead>
                 <tbody>
                   {userArticles.map((article) => (
-                    <tr key={article.id}>
-                      <td className="border p-2">{article.title}</td>
+                    <tr key={article._id}>
+                      <td className="border p-2">
+                        <Link to={`/article/${article._id}`} key={article._id}>
+                          <span>{article.title}</span>
+                        </Link>
+                      </td>
                       <td className="border p-2">{article.reads}</td>
                       <td className="border p-2">{article.category}</td>
                       <td className="border p-2">
