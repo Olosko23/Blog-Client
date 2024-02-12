@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { FaCommentDots } from "react-icons/fa";
@@ -33,16 +33,18 @@ const Comment = ({ content, username, avatar, createdAt }) => {
   );
 };
 
-const Comments = ({ comments, articleId }) => {
+const Comments = ({ comments: initialComments, articleId }) => {
+  const [comments, setComments] = useState(initialComments || []);
   const [newComment, setNewComment] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
   const user = useSelector((state) => state.user.user);
-  const author_id = user ? user._id : null;
-  const author_Image = user ? user.avatar.imageUrl : null;
-  const author_username = user ? user.username : null;
-  const content = newComment;
+
+  // link https://phreddy-blog.onrender.com/api/articles/${articleId}/comment
+
+  useEffect(() => {
+    setComments(initialComments || []);
+  }, [initialComments]);
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -50,8 +52,15 @@ const Comments = ({ comments, articleId }) => {
       setLoading(true);
       const response = await axios.post(
         `https://phreddy-blog.onrender.com/api/articles/${articleId}/comment`,
-        { author_id, author_Image, author_username, content }
+        {
+          author_id: user._id,
+          author_Image: user.avatar.imageUrl,
+          author_username: user.username,
+          content: newComment,
+        }
       );
+      const { article: updatedArticle } = response.data;
+      setComments(updatedArticle.comments);
       setNewComment("");
       setLoading(false);
     } catch (error) {
@@ -96,6 +105,7 @@ const Comments = ({ comments, articleId }) => {
           <button
             className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
             onClick={handleCommentSubmit}
+            disabled={loading}
           >
             {loading ? "Please Wait" : "Add Comment"}
           </button>{" "}
