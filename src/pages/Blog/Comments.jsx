@@ -4,13 +4,28 @@ import { useSelector } from "react-redux";
 import { FaCommentDots } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const Comment = ({ content, username, avatar }) => {
+const Comment = ({ content, username, avatar, createdAt }) => {
+  const timeAgo = () => {
+    const date = new Date(createdAt);
+    const now = new Date();
+    const diffTime = Math.abs(now - date);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    if (diffDays > 0) return `${diffDays} days ago`;
+    const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+    if (diffHours > 0) return `${diffHours} hours ago`;
+    const diffMinutes = Math.floor(diffTime / (1000 * 60));
+    return `${diffMinutes} minutes ago`;
+  };
+
   return (
     <div className="flex items-start py-4 px-4">
       <img src={avatar} alt="Avatar" className="w-12 h-12 rounded-full mr-4" />
       <div className="flex-1">
         <div className="flex items-center mb-1">
           <p className="font-semibold mr-2">{username}</p>
+          <p className="text-gray-400 text-sm grid place-items-center">
+            {timeAgo()}
+          </p>
         </div>
         <p className="text-gray-600 text-md">{content}</p>
       </div>
@@ -46,14 +61,14 @@ const Comments = ({ comments, articleId }) => {
 
   return (
     <div className="mt-8 w-full max-w-4xl mx-auto px-1 sm:px-6 py-2">
-      <h2 className="text-xl mb-4 flex space-x-2 text-blue-600 font-bold">
+      <h2 className="text-xl mb-4 flex space-x-2 text-blue-600 font-bold ml-5">
         <span className="grid place-items-center">
           <FaCommentDots size={20} />
         </span>
         <span className="grid place-items-center">Comments</span>
       </h2>
       {comments.length === 0 ? (
-        <p className="text-gray-600 italic my-2 p-1">
+        <p className="text-gray-600 text-center italic my-2 p-1">
           No comments here. Be the first to comment.
         </p>
       ) : (
@@ -63,14 +78,15 @@ const Comments = ({ comments, articleId }) => {
             username={comment.author_username}
             avatar={comment.author_Image}
             content={comment.content}
+            createdAt={new Date(comment.createdAt)}
             author_id={comment.author_id}
           />
         ))
       )}
       {user && (
-        <>
+        <div className="px-4 md:px-2">
           <textarea
-            className="border border-gray-200 rounded-md p-2 mb-4 mt-2 w-full"
+            className="border border-gray-200 rounded-md p-2 mb-2 mt-2 w-full"
             placeholder="Add a comment..."
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
@@ -82,7 +98,7 @@ const Comments = ({ comments, articleId }) => {
             {loading ? "Please Wait" : "Add Comment"}
           </button>{" "}
           {error && <span className="text-red-600 my-2">{error}</span>}
-        </>
+        </div>
       )}
       {!user && (
         <div className="text-center my-3 font-semibold text-blue-600">

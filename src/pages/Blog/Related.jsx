@@ -43,7 +43,7 @@ const Related = ({ articleId, currentCategory }) => {
   return (
     <>
       {relatedArticles.length > 0 && (
-        <div className="mx-auto max-w-4xl py-12 mt-2 md:mt-6">
+        <div className="mx-auto max-w-4xl py-8 mt-2 md:mt-6">
           <h2 className="text-2xl font-bold mb-4 text-center">
             You may also like
           </h2>
