@@ -58,7 +58,7 @@ const Related = ({ articleId, currentCategory }) => {
                     </h3>
                     <p className="text-sm text-center">
                       {article.author_details.username}{" "}
-                      {new Date(article.updatedAt).toLocaleString(undefined, {
+                      {new Date(article.createdAt).toLocaleString(undefined, {
                         dateStyle: "short",
                         timeStyle: "short",
                       })}
