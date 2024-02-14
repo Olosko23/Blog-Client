@@ -19,7 +19,7 @@ const Blog = () => {
         setArticle(response.data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching article details:", error);
+        console.log("Error fetching article details:", error);
         setLoading(false);
       }
     };
