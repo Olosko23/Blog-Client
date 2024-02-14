@@ -25,6 +25,11 @@ const Section1 = () => {
     fetchRandomArticles();
   }, []);
 
+  function formatDate(date) {
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    return date.toLocaleDateString("en-GB", options);
+  }
+
   return (
     <div className="container mx-auto px-4 max-w-7xl py-12">
       <section className="text-center">
@@ -190,12 +195,7 @@ const Section1 = () => {
                         </h3>
                       )}{" "}
                     <div className="text-sm text-gray-500 flex items-center">
-                      <p>
-                        {new Date(article.updatedAt).toLocaleString(undefined, {
-                          dateStyle: "short",
-                          timeStyle: "short",
-                        })}
-                      </p>
+                      <p>{formatDate(new Date(article.createdAt))}</p>{" "}
                       <span className="mx-1">•</span> {/* Divider */}
                       <p>{article.readTime} mins read</p>
                     </div>

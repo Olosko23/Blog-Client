@@ -29,6 +29,11 @@ const Blog = () => {
 
   const createMarkup = (html) => ({ __html: html });
 
+  function formatDate(date) {
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    return date.toLocaleDateString("en-GB", options);
+  }
+
   return (
     <>
       {loading ? (
@@ -89,12 +94,7 @@ const Blog = () => {
                       </h3>
                     )}{" "}
                   <div className="text-sm text-gray-500 flex items-center">
-                    <p>
-                      {new Date(article.updatedAt).toLocaleString(undefined, {
-                        dateStyle: "short",
-                        timeStyle: "short",
-                      })}
-                    </p>{" "}
+                    <p>{formatDate(new Date(article.createdAt))}</p>{" "}
                     <span className="mx-1">•</span> {/* Divider */}
                     <p>{article.readTime} mins read</p>
                   </div>
@@ -112,7 +112,7 @@ const Blog = () => {
           </section>
         </div>
       )}
-      <div className="flex flex-col">
+      <div className="flex flex-col px-1 sm:px-0">
         <Comments comments={article.comments || []} articleId={article._id} />
         <Related articleId={article._id} currentCategory={article.category} />
       </div>

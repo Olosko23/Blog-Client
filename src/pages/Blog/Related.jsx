@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -19,7 +16,8 @@ const Related = ({ articleId, currentCategory }) => {
           (article) =>
             article.category === currentCategory && article._id !== articleId
         );
-        setRelatedArticles(filteredArticles);
+        const limitedArticles = filteredArticles.slice(0, 4);
+        setRelatedArticles(limitedArticles);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching related articles:", error);
@@ -28,17 +26,12 @@ const Related = ({ articleId, currentCategory }) => {
     };
 
     fetchRelatedArticles();
-  }, [articleId, currentCategory]);
+  }, [currentCategory, articleId]);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-  };
+  function formatDate(date) {
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    return date.toLocaleDateString("en-GB", options);
+  }
 
   return (
     <>
@@ -57,26 +50,27 @@ const Related = ({ articleId, currentCategory }) => {
               </div>
             ))
           ) : (
-            <Slider
-              {...settings}
-              id="slick_carousel"
-              className="slick-carousel px-4"
-            >
+            <div className="related-articles">
               {relatedArticles.map((article) => (
                 <Link to={`/article/${article._id}`} key={article._id}>
-                  <div className="bg-white p-4 rounded-md shadow-md">
+                  <div className="bg-white p-4 sm:shadow-none sm:rounded-none rounded-md shadow-md mb-4">
                     <img
-                      src={article.thumbnail?.imageUrl || "fallback_image_url"}
+                      src={article.thumbnail?.imageUrl || ""}
                       className="h-20 w-full object-contain rounded-md mb-2"
                       alt="Article_Image"
                     />
                     <h3 className="text-lg font-semibold mb-2 text-center">
                       {article.title}
                     </h3>
+                    <p className="text-sm text-center">
+                      {article.author_details.username}{" "}
+                      <span className="mx-1">•</span>
+                      {formatDate(new Date(article.createdAt))}
+                    </p>
                   </div>
                 </Link>
               ))}
-            </Slider>
+            </div>
           )}
         </div>
       )}

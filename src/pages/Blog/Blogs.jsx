@@ -56,6 +56,11 @@ const Articles = () => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
+  function formatDate(date) {
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    return date.toLocaleDateString("en-GB", options);
+  }
+
   return (
     <div className="container mx-auto px-4 md:px-8 max-w-7xl py-12 mt-24">
       <section className="text-center">
@@ -225,12 +230,7 @@ const Articles = () => {
                       )}
 
                     <div className="text-sm text-gray-500 flex items-center">
-                      <p>
-                        {new Date(article.updatedAt).toLocaleString(undefined, {
-                          dateStyle: "short",
-                          timeStyle: "short",
-                        })}
-                      </p>{" "}
+                      <p>{formatDate(new Date(article.createdAt))}</p>{" "}
                       <span className="mx-1">•</span>
                       <p>{article.readTime} mins read</p>
                     </div>
