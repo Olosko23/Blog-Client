@@ -42,7 +42,6 @@ const Signup = () => {
         "https://phreddy-blog.onrender.com/api/auth/signup",
         { username, email, password }
       );
-      console.log(response.data);
       setLoading(false);
       navigate("/login");
     } catch (error) {

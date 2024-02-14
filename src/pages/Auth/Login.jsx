@@ -49,6 +49,7 @@ const Login = () => {
       const userObject = {
         email: userData.email,
         username: userData.username,
+        avatar: userData.avatr,
         isVerified: userData.isVerified,
         _id: userData._id,
       };

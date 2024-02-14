@@ -50,11 +50,18 @@ const Comments = ({ comments: initialComments, articleId }) => {
     e.preventDefault();
     try {
       setLoading(true);
+
+      if (user.avatar && user.avatar.imageUrl) {
+        authorImage = user.avatar.imageUrl;
+      } else {
+        authorImage = `https://ui-avatars.com/api/?name=${user.username}`;
+      }
+
       const response = await axios.post(
         `https://phreddy-blog.onrender.com/api/articles/${articleId}/comment`,
         {
           author_id: user._id,
-          author_Image: user.avatar.imageUrl,
+          author_Image: authorImage,
           author_username: user.username,
           content: newComment,
         }
@@ -71,7 +78,7 @@ const Comments = ({ comments: initialComments, articleId }) => {
 
   return (
     <div className="mt-8 w-full max-w-4xl mx-auto px-1 sm:px-6 py-2">
-      <h2 className="text-xl mb-4 flex space-x-2 text-blue-600 font-bold ml-5">
+      <h2 className="text-xl mb-4 flex space-x-2 text-blue-600 font-bold ml-5 pl-2">
         <span className="grid place-items-center">
           <FaCommentDots size={20} />
         </span>
@@ -86,9 +93,11 @@ const Comments = ({ comments: initialComments, articleId }) => {
           <Comment
             key={index}
             username={comment.author_username}
-            avatar={comment.author_Image}
+            avatar={
+              comment.author_Image || "https://example.com/default-avatar.png"
+            }
             content={comment.content}
-            createdAt={new Date(comment.createdAt)}
+            createdAt={comment.createdAt}
             author_id={comment.author_id}
           />
         ))
