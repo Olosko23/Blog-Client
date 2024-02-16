@@ -46,7 +46,6 @@ const Blog = () => {
               </div>
             </div>
           </div>
-          );
         </div>
       ) : (
         <div className="container mx-auto px-4 max-w-4xl py-12 mt-24">
