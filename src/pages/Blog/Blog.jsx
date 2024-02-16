@@ -38,7 +38,7 @@ const Blog = () => {
     <>
       {loading ? (
         <div className="container mx-auto px-4 max-w-4xl py-12 mt-24 h-[85vh]">
-          <div className="animate-pulse space-y-4">
+          <div className="animate-pulse space-y-4 text-center">
             <div className="bg-gray-300 h-60 w-full object-cover rounded-md mb-4"></div>
             <div className="bg-gray-300 h-4 w-1/4 mb-2"></div>
             <div className="bg-gray-300 h-4 w-1/2 mb-2"></div>
@@ -51,7 +51,6 @@ const Blog = () => {
               </div>
             </div>
           </div>
-          );
         </div>
       ) : (
         <div className="container mx-auto px-4 max-w-4xl py-12 mt-24">
