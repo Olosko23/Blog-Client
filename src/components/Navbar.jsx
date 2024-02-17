@@ -20,6 +20,7 @@ const Navbar = () => {
 
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+  
 
   useEffect(() => {
     const handleScroll = () => {
