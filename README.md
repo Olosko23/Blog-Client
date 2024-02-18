@@ -64,7 +64,7 @@ Here's a breakdown of the routes in your application:
 
 ### Blogs
 
-- Lists all the blogs available on your website.
+- Lists all the blogs available on your website
 
 ### Blog
 
