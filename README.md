@@ -48,7 +48,7 @@ Here's a breakdown of the routes in your application:
 
 ## Components
 
-- **Navbar:** The navigation bar component (`<Navbar />`) is displayed at the top of each page, providing links to different sections of the website.
+- **Navbar:** The navigation bar component (`<Navbar />`) is displayed at the top of each page, providing links to different sections of the website
 
 - **Footer:** The footer component (`<Footer />`) is displayed at the bottom of each page, containing additional information or links.
 
