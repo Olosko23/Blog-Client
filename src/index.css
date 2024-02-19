@@ -27,4 +27,8 @@
   background-color: #011650;
 }
 
+table {
+    width:100%;
+    table-layout: fixed;
+}
 
