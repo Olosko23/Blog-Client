@@ -42,9 +42,10 @@ const Footer = () => {
           >
             Terms of Service
           </Link>{" "}
-          <span className="mx-1">•</span>
+         
           {user && (
             <>
+             <span className="mx-1">•</span>
               <Link to="/blogs" className="text-blue-500 hover:underline">
                 Blogs
               </Link>{" "}
