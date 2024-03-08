@@ -16,6 +16,7 @@ Welcome to the documentation for your blogging website! This documentation provi
 3. [Routing](#routing)
 4. [Components](#components)
 5. [Pages](#pages)
+6. [Settings](#settings)
 
 ## Overview
 
