@@ -9,12 +9,33 @@ const Comment = ({ content, username, avatar, createdAt }) => {
     const date = new Date(createdAt);
     const now = new Date();
     const diffTime = Math.abs(now - date);
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    if (diffDays > 0) return `${diffDays} days ago`;
-    const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
-    if (diffHours > 0) return `${diffHours} hours ago`;
+    const diffSeconds = Math.floor(diffTime / 1000);
+    if (diffSeconds === 1) return `${diffSeconds} second ago`;
+    if (diffSeconds < 60) return `${diffSeconds} seconds ago`;
+
     const diffMinutes = Math.floor(diffTime / (1000 * 60));
-    return `${diffMinutes} minutes ago`;
+    if (diffMinutes === 1) return `${diffMinutes} minute ago`;
+    if (diffMinutes < 60) return `${diffMinutes} minutes ago`;
+
+    const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
+    if (diffHours === 1) return `${diffHours} hour ago`;
+    if (diffHours < 24) return `${diffHours} hours ago`;
+
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    if (diffDays === 1) return `${diffDays} day ago`;
+    if (diffDays < 7) return `${diffDays} days ago`;
+
+    const diffWeeks = Math.floor(diffDays / 7);
+    if (diffWeeks === 1) return `${diffWeeks} week ago`;
+    if (diffWeeks < 4) return `${diffWeeks} weeks ago`;
+
+    const diffMonths = Math.floor(diffDays / 30);
+    if (diffMonths === 1) return `${diffMonths} month ago`;
+    if (diffMonths < 12) return `${diffMonths} months ago`;
+
+    const diffYears = Math.floor(diffDays / 365);
+    if (diffYears === 1) return `${diffYears} year ago`;
+    return `${diffYears} years ago`;
   };
 
   return (
@@ -79,7 +100,6 @@ const Comments = ({ comments: initialComments, articleId }) => {
       </h2>
       {comments.length === 0 ? (
         <p className="text-gray-600 text-center italic my-2 p-1">
-
           No comments here. Be the first to comment.
         </p>
       ) : (
