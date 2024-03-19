@@ -264,10 +264,14 @@ const Articles = () => {
 
                     <div className="text-sm text-gray-500 flex items-center">
                       <p>
-                        {new Date(article.updatedAt).toLocaleString(undefined, {
-                          dateStyle: "short",
-                          timeStyle: "short",
-                        })}
+                        {new Date(article.createdAt).toLocaleDateString(
+                          undefined,
+                          {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          }
+                        )}
                       </p>{" "}
                       <span className="mx-1">•</span>
                       <p>{article.readTime} mins read</p>
