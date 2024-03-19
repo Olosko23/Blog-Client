@@ -17,6 +17,7 @@ Welcome to the documentation for your blogging website! This documentation provi
 4. [Components](#components)
 5. [Pages](#pages)
 6. [Settings](#settings)
+7. [Recommendations] (#recommendations)
 
 ## Overview
 
