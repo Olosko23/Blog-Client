@@ -1,6 +1,7 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { BsPersonCircle } from "react-icons/bs";
 
 const Related = ({ articleId, currentCategory }) => {
   const [relatedArticles, setRelatedArticles] = useState([]);
@@ -44,28 +45,45 @@ const Related = ({ articleId, currentCategory }) => {
               </div>
             ))
           ) : (
-            <div className="related-articles">
+            <div className="">
               {relatedArticles.map((article) => (
                 <Link to={`/article/${article._id}`} key={article._id}>
-                  <div className="bg-white p-4 shadow-none rounded-none md:rounded-md md:shadow-md mb-4">
-                    <img
-                      src={article.thumbnail?.imageUrl || ""}
-                      className="h-20 w-full object-contain rounded-md mb-2"
-                      alt="Article_Image"
-                    />
-                    <h3 className="text-lg font-semibold mb-2 text-center">
-                      {article.title}
-                    </h3>
-                    <p className="text-sm text-center">
-                      {article.author_details.username}{" "}
-                      {new Date(article.createdAt).toLocaleString(undefined, {
-                        dateStyle: "short",
-                        timeStyle: "short",
-                      })}
-                    </p>
+                  <div className="bg-white flex">
+                    <div className="basis-1/5 w-full h-full p-2">
+                      <img
+                        src={article.thumbnail?.imageUrl || ""}
+                        className="h-20 w-full object-cover rounded-md"
+                        alt="Article_Image"
+                      />
+                    </div>
+                    <div className="basis-4/5 p-2">
+                      <h3 className="text-lg font-semibold mb-2 text-start hover:underline">
+                        {article.title}
+                      </h3>
+                      <p className="text-sm text-start flex">
+                        <p className="flex gap-2">
+                          <span className="grid place-items-center">
+                            <BsPersonCircle />
+                          </span>
+                          {article.author_details.username}
+                        </p>
+                        <span className="mx-1">•</span>
+                        <p className="italic">
+                          {new Date(article.createdAt).toLocaleDateString(
+                            undefined,
+                            {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            }
+                          )}
+                        </p>
+                      </p>
+                    </div>
                   </div>
                 </Link>
               ))}
+              <hr />
             </div>
           )}
         </div>
