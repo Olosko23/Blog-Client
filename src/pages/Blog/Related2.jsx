@@ -48,7 +48,7 @@ const Related = ({ articleId, currentCategory }) => {
             <div className="">
               {relatedArticles.map((article) => (
                 <Link to={`/article/${article._id}`} key={article._id}>
-                  <div className="bg-white flex">
+                  <div className="bg-white flex max-w-6xl mx-auto">
                     <div className="basis-1/5 w-full h-full p-2">
                       <img
                         src={article.thumbnail?.imageUrl || ""}

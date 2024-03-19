@@ -192,7 +192,7 @@ const Section1 = () => {
               <Link
                 to={`/article/${article._id}`}
                 key={article._id}
-                className="bg-white p-6 rounded-md shadow-md hover:scale-105 duration-300"
+                className="bg-white p-6 rounded-md shadow-md hover:scale-105 duration-300 flex flex-col justify-between"
               >
                 <div>
                   <img
