@@ -68,26 +68,37 @@ const Profile = () => {
               </div>
             )}
             {userdetails && (
-              <>
-                <p className="mb-2">
-                  <strong>Username:</strong> {userdetails.username}
-                </p>
-                <p className="mb-2">
-                  <strong>About:</strong> {userdetails.about}
-                </p>
-                <p className="mb-2">
-                  <strong>Email:</strong> {userdetails.email}
-                </p>
-                <p>
-                  <strong>Occupation:</strong> {userdetails.occupation}
-                </p>
-              </>
+              <div className="flex justify-between flex-col md:flex-row">
+                <div className="order-2 md:order-1">
+                  <p className="mb-2">
+                    <strong>Username:</strong> {userdetails.username}
+                  </p>
+                  <p className="mb-2">
+                    <strong>About:</strong> {userdetails.about}
+                  </p>
+                  <p className="mb-2">
+                    <strong>Email:</strong> {userdetails.email}
+                  </p>
+                  <p>
+                    <strong>Occupation:</strong> {userdetails.occupation}
+                  </p>
+                </div>
+                <div className="md:mr-5 grid md:place-items-center order-1 md:order-2 my-4 md:my-0">
+                  {userdetails && userdetails.avatar && (
+                    <img
+                      src={userdetails.avatar.imageUrl}
+                      className="h-24 w-24 rounded-full"
+                      alt="Author_Image"
+                    />
+                  )}
+                </div>
+              </div>
             )}
           </div>
         )}
 
         <div className="w-full">
-          <h2 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6 text-center text-blue-600">
+          <h2 className="text-lg lg:text-xl font-semibold mb-4 lg:mb-6 md:text-center text-start text-blue-600">
             Your Articles
           </h2>
           {userArticles.length === 0 ? (
@@ -113,7 +124,9 @@ const Profile = () => {
                     <tr key={article._id}>
                       <td className="border p-2">
                         <Link to={`/article/${article._id}`} key={article._id}>
-                          <span>{article.title}</span>
+                          <span className="hover:underline">
+                            {article.title}
+                          </span>
                         </Link>
                       </td>
                       <td className="border p-2">{article.reads}</td>
