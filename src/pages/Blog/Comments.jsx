@@ -129,7 +129,7 @@ const Comments = ({ comments: initialComments, articleId }) => {
           >
             {loading ? "Please Wait" : "Add Comment"}
           </button>{" "}
-          {error && <span className="text-red-600 my-2">{error}</span>}
+          {error && <span className="text-red-700 my-2">{error}</span>}
         </div>
       )}
       {!user && (
