@@ -18,7 +18,7 @@ Welcome to the documentation for your blogging website! This documentation provi
 5. [Pages](#pages)
 6. [Settings](#settings)
 7. [Recommendations](#recommendations)
-8. [Contribute](#contribute)
+8. [How To Contribute](#contribute)
 
 ## Overview
 
