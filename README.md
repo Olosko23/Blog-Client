@@ -2,7 +2,9 @@
 # Blogging Website Documentation
 
 <hr />
+<li>
 https://phreddy.netlify.app/
+</li>
  <hr />
 
 ## Introduction
