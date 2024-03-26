@@ -5,7 +5,6 @@
 <li>
 https://phreddy.netlify.app/
 </li>
-<li></li>
  <hr />
 
 ## Introduction
