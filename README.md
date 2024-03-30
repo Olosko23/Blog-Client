@@ -33,7 +33,7 @@ The file structure of your project may look like this.
 
 ## Routing
 
-Routing is handled using the `react-router-dom` library. The `BrowserRouter` component is used to wrap the entire application. Routes are defined using the `Routes` and `Route` components.
+Routing is handled using the `react-router-dom` library. The `BrowserRouter` component is used to wrap the entire application. Routes are defined using the `Routes` and `Route` components
 
 Here's a breakdown of the routes in your application:
 
