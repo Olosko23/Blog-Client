@@ -61,7 +61,7 @@ Here's a breakdown of the routes in your application:
 
 ### Home
 
-- Displays the main content of your homepage.
+- Displays the main content of your homepage
 
 ### About
 
