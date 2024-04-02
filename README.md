@@ -77,7 +77,7 @@ Here's a breakdown of the routes in your application:
 
 ### Login
 
-- Allows users to log in to their accounts
+- Allows users to log in to their accounts.
 
 ### Signup
 
