@@ -65,7 +65,7 @@ Here's a breakdown of the routes in your application:
 
 ### About
 
-- Provides information about your website or organization.
+- Provides information about your website or organization
 
 ### Blogs
 
