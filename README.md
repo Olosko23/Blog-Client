@@ -89,7 +89,7 @@ Here's a breakdown of the routes in your application:
 
 ### ResetPassword
 
-- Allows users to reset their passwords using a provided token.
+- Allows users to reset their passwords using a provided token
 
 ### Privacy
 
