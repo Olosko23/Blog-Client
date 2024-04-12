@@ -105,7 +105,7 @@ Here's a breakdown of the routes in your application:
 
 ### Details
 
-- Provides detailed information about a specific blog post.
+- Provides detailed information about a specific blog post
 
 ### Error404
 - Provides a page to show broken links.
