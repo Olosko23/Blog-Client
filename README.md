@@ -28,7 +28,7 @@ Your blogging website is built using React and utilizes the React Router library
 
 ## File Structure
 
-The file structure of your project may look like this
+The file structure of your project may look like this.
 
 
 ## Routing
