@@ -24,7 +24,7 @@ Welcome to the documentation for your blogging website! This documentation provi
 
 ## Overview
 
-Your blogging website is built using React and utilizes the React Router library for navigation. The `app.js` file is the entry point of your application and defines the structure of your website, including the navigation bar, routes, and footer.
+Your blogging website is built using React and utilizes the React Router library for navigation. The `app.js` file is the entry point of your application and defines the structure of your website, including the navigation bar, routes, and footer
 
 ## File Structure
 
