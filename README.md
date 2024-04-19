@@ -7,7 +7,7 @@ https://phreddy.netlify.app/
 
  <hr />
 
-## Introduction
+## Introduction.
 
 Welcome to the documentation for your blogging website! This documentation provides an overview of the structure and functionality of the website, with a focus on the `app.js` file.
 
