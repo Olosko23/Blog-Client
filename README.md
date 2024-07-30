@@ -1,5 +1,5 @@
 
-# Blogging Website Documentation.
+# Blogging Website Documentation
 
 <hr />
 
